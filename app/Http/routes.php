@@ -15,6 +15,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// 后台路由开始
+Route::get('/admin','Admin\IndexController@index');
+// 用户的增删改查路由
+ Route:resource('/admin/user','Admin\UserController');
+
+
 
 
 
@@ -99,3 +105,25 @@ Route::get('/', function () {
 
 //前台开始
 Route::get('/home','Home\IndexController@Index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 前台路由
