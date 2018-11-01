@@ -22,7 +22,6 @@ class CategoryController extends Controller
         $search =($request->input('search'));
         $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
         $cate =Category::where('name','like','%'.$search.'%')->paginate($showcount);
-        // $cate =Category::paginate($showcount);
     
        return view('admin.cate.index',['cate' => $cate,'title'=>'分类列表','date'=>$date]);
     }

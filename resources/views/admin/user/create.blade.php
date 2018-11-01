@@ -1,6 +1,7 @@
 @extends('admin.clone_index.clone')
 
 @section('content')
+    <!-- 用户添加页面 -->
 	<!-- 显示验证错误信息 -->
 	@if (count($errors) > 0)
     <div class="mws-form-message error">

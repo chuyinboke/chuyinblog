@@ -50,7 +50,6 @@ class UserController extends Controller
         DB::beginTransaction();
        // 获取数据，进行添加
        $user = new User;
-
        $user->username =$request->input('username');
        $user->password =Hash::make($request->input('password'));
        $user->email =$request->input('email');
@@ -69,7 +68,6 @@ class UserController extends Controller
             DB::rollBack();
             return  back()->with('error','添加失败');
        }
-
     }
 
     /**
@@ -129,7 +127,7 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 删除
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
