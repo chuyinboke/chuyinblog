@@ -63,7 +63,7 @@ class UserController extends Controller
        $user->created_at =time();
        $user->updated_at =time();
        $user->save();
-        dump($user);
+        // dump($user);
        if($user){
         // 提交事务
             DB::commit();

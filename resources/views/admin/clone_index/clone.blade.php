@@ -34,7 +34,7 @@
 <link rel="stylesheet" type="text/css" href="/a/css/themer.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/a/css/page_page.css">
 
-<title>MWS Admin - Dashboard</title>
+<title>初音家博客后台</title>
 
 </head>
 
@@ -255,7 +255,6 @@
             <!-- 目录栏 -->
             <div id="mws-navigation">
                 <ul>
-                   
                     <li>
                         <a href="/a/#"><i class="icon-list"></i>用户管理</a>
                         <ul>
@@ -264,6 +263,17 @@
                         </ul>
                     </li>
                 </ul>
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-list"></i>文章管理</a>
+                        <ul>
+                            <li><a href="/admin/article/create">添加文章</a></li>
+                            <li><a href="/admin/article">文章列表</a></li>
+                        </ul>
+                    </li>
+                </ul>   
+                   
+
             </div>         
         </div>
         
