@@ -104,6 +104,7 @@
         
         <div class="mws-button-row">
         	<input type="submit" class='btn btn-info' value="提交">
+            <input class="btn btn-danger " type="reset" value="重置">
         </div>
     </form>
     </div>

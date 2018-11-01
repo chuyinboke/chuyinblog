@@ -11,13 +11,14 @@
                         <form action='/admin/user' method='get'>
                              <div class="dataTables_length" id="DataTables_Table_1_length">
                                 <label>显示<select name="showCount"  size="1">
-                                    <option selected="selected" value="5">5</option>
-                                  
+                                    <option  value="5" @if((isset($date['showcount']) && !empty($date['showcount'])) && $date['showcount'] == 5) selected @endif>5</option>
+                                    <option  value="10"  @if((isset($date['showcount']) && !empty($date['showcount'])) && $date['showcount'] == 10) selected @endif>10</option>
+                                    <option  value="15"  @if((isset($date['showcount']) && !empty($date['showcount'])) && $date['showcount'] == 15) selected @endif>15</option>   
                                 </select> 条</label>
                             </div>
                             <div class="dataTables_filter" id="DataTables_Table_1_filter">
                             <label>关键字:
-                                 <input name='search' aria-controls="DataTables_Table_1" type="text">
+                                 <input name='search' aria-controls="DataTables_Table_1" type="text"  value="{{ $date['search'] or ''}}">
                              </label>
                                 <input type="submit" value='搜索' class='btn btn-info'>
                             </div>
