@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
 // 后台路由开始
 Route::get('/admin','Admin\IndexController@index');
 // 用户的增删改查路由
@@ -47,6 +48,9 @@ Route::get('/admin','Admin\IndexController@index');
 
 
 
+//文章的路由
+Route::resource('/admin/article','Admin\ArticleConteoller');
+//友情链接路由
 
 
 
@@ -100,8 +104,8 @@ Route::get('/admin','Admin\IndexController@index');
 
 
 
-
-
+//前台开始
+Route::get('/home','Home\IndexController@Index');
 
 
 
