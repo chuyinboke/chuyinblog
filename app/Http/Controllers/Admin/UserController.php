@@ -14,21 +14,17 @@ use DB;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * 用户列表页
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        // $request = $request->all();
-        // $searchs =empty($request['search']) ? '' : $request['search'];
-        // $searchs =$request->input('search','');
-        // dump($searchs);
-        // $user =User::where('username','like','%'.$searchs.'%')->paginate(5);
-
-        $user =User::paginate(5);
-
-        return view('admin.user.index',['title'=>'用户列表','user'=>$user,'request'=>$request]);
+         $date =$request->all();
+         $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
+        $search =$request->input('search');
+        $user =User::where('username','like','%'.$search.'%')->paginate($showcount);
+        return view('admin.user.index',['title'=>'用户列表','user'=>$user,'date'=>$date]);
 
     }
 
@@ -63,7 +59,7 @@ class UserController extends Controller
        $user->created_at =time();
        $user->updated_at =time();
        $user->save();
-        dump($user);
+
        if($user){
         // 提交事务
             DB::commit();

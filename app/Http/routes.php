@@ -19,6 +19,8 @@ Route::get('/', function () {
 Route::get('/admin','Admin\IndexController@index');
 // 用户的增删改查路由
  Route:resource('/admin/user','Admin\UserController');
+ // 分类的增删改查路由
+ Route::resource('admin/cate','Admin\CategoryController');
 
 
 

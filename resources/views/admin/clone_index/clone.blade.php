@@ -33,6 +33,7 @@
 <link rel="stylesheet" type="text/css" href="/a/css/mws-theme.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/a/css/themer.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/a/css/page_page.css">
+<script type="text/javascript" src="/a/bootstrap/js/jquery-1.8.3.min.js"></script>
 
 <title>MWS Admin - Dashboard</title>
 
@@ -255,12 +256,20 @@
             <!-- 目录栏 -->
             <div id="mws-navigation">
                 <ul>
-                   
                     <li>
-                        <a href="/a/#"><i class="icon-list"></i>用户管理</a>
+                        <a href="/a/#"><i class="icon-users"></i>用户管理</a>
                         <ul>
                             <li><a href="/admin/user/create">添加用户</a></li>
                             <li><a href="/admin/user">用户列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                   <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-align-left"></i>分类管理</a>
+                        <ul>
+                            <li><a href="/admin/cate/create">添加分类</a></li>
+                            <li><a href="/admin/cate">分类列表</a></li>
                         </ul>
                     </li>
                 </ul>
