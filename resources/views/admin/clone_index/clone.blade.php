@@ -35,7 +35,7 @@
 <link rel="stylesheet" type="text/css" href="/a/css/page_page.css">
 <script type="text/javascript" src="/a/bootstrap/js/jquery-1.8.3.min.js"></script>
 
-<title>MWS Admin - Dashboard</title>
+<title>初音家博客后台</title>
 
 </head>
 
@@ -264,6 +264,7 @@
                         </ul>
                     </li>
                 </ul>
+
                    <ul>
                     <li>
                         <a href="/a/#"><i class="icon-align-left"></i>分类管理</a>
@@ -273,6 +274,19 @@
                         </ul>
                     </li>
                 </ul>
+
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-list"></i>文章管理</a>
+                        <ul>
+                            <li><a href="/admin/article/create">添加文章</a></li>
+                            <li><a href="/admin/article">文章列表</a></li>
+                        </ul>
+                    </li>
+                </ul>   
+                   
+
+
             </div>         
         </div>
         

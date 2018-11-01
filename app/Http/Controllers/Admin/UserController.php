@@ -60,6 +60,8 @@ class UserController extends Controller
        $user->updated_at =time();
        $user->save();
 
+
+
        if($user){
         // 提交事务
             DB::commit();

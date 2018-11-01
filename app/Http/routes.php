@@ -48,9 +48,8 @@ Route::get('/admin','Admin\IndexController@index');
 
 
 
-
-
-
+//文章的路由
+Route::resource('/admin/article','Admin\ArticleConteoller');
 
 
 
