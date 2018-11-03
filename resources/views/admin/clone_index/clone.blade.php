@@ -34,6 +34,7 @@
 <link rel="stylesheet" type="text/css" href="/a/css/themer.css" media="screen">
 <link rel="stylesheet" type="text/css" href="/a/css/page_page.css">
 <script type="text/javascript" src="/a/bootstrap/js/jquery-1.8.3.min.js"></script>
+<emeta name='csrf-token' content='{{ csrf_token() }}'>
 
 <title>初音家博客后台</title>
 
@@ -284,7 +285,16 @@
                         </ul>
                     </li>
                 </ul>   
-                   
+                  <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>公告管理</a>
+                        <ul>
+                            <li><a href="/admin/notice/create">添加公告</a></li>
+                            <li><a href="/admin/notice">公告列表</a></li>
+                        </ul>
+                    </li>
+                </ul>   
+                     
 
 
             </div>         

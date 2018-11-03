@@ -31,9 +31,11 @@
                 <tr >
                 	<th>ID</th>
                 	<th>分类名称</th>
-                	<th>分类描述</th>
+                	<!-- <th>属性分类ID</th>
+                    <th>分类路径</th> -->
                 	<th>添加时间</th>
                 	<th>修改时间</th>
+                    <th>分类状态</th>
                 	<th>操作</th>
                 </tr>
             </thead>
@@ -43,9 +45,17 @@
         	<tr class="odd">
                     <td class=" ">{{ $v['id']}}</td>
                     <td class=" ">{{ $v['name']}}</td>
-                    <td class=" ">{{ $v['title']}}</td>
+                   <!--  <td class=" ">{{ $v['pid'] }}</td>
+                    <td>{{ $v['path']}}</td> -->
                     <td class=" ">{{ $v['created_at']}}</td>
                     <td class=" ">{{ $v['updated_at']}}</td>
+                    <td>
+                        @if($v['status'] == 0)
+                        <button style='color:yellow;background:black'>开启</button>
+                        @else
+                        <button style='color:red;background:black'>关闭</button>
+                        @endif
+                    </td>
                     <td class=" ">
                     	<a href="/admin/cate/{{$v['id']}}/edit" class='btn btn-warning'>修改</a>
                     	 <form  style="display:inline-block" action='/admin/cate/{{ $v["id"]}}' method='post'>
@@ -58,12 +68,13 @@
               </tr>
               @endforeach
                 </tbody>
+
             </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">Showing 1 to 10 of 57 entries  </div>
-          	 <div id='page_page'>
-           		{!! $cate->appends($date)->render() !!}
+          	 <div id='page_page'> 
+           		 {!! $cate->appends($date)->render() !!}
     
-        	</div>
+        	</div> 
         </div>
     </div>
 </div>

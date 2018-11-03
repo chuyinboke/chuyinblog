@@ -21,6 +21,9 @@ Route::get('/admin','Admin\IndexController@index');
  Route:resource('/admin/user','Admin\UserController');
  // 分类的增删改查路由
  Route::resource('admin/cate','Admin\CategoryController');
+ // 公告的路由
+ Route::resource('admin/notice','Admin\NoticeController');
+
 
 
 

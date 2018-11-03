@@ -20,20 +20,33 @@
         		{{ csrf_field()}}
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
-        				<label class="mws-form-label">分类添加</label>
+        				<label class="mws-form-label">分类名称</label>
         				<div class="mws-form-item">
         					<input class="small" type="text" name='name'>
         					<span id='span'></span>
         				</div>
         			</div>
-        			
-        			
         			<div class="mws-form-row">
-        				<label class="mws-form-label">分类描述</label>
-        				<div class="mws-form-item">
-        					<textarea class="small" rows="2" cols="20" name='title'></textarea>
-        				</div>
-        			</div>                  		
+                        <label class="mws-form-label">所属类别</label>
+                        <div class="mws-form-item">
+                            <select class="small" name='pid'>
+                                <option value='0'>----请选择-----</option>
+                                @foreach($cate as $k => $v)
+                                <option value='{{ $v['id']}}'>{{ $v['name']}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mws-form-row">
+                        <label class="mws-form-label">分类状态</label>
+                        <div class="mws-form-item clearfix">
+                            <ul class="mws-form-list inline">
+                                <li><input type="radio" value='0'  name='status' id='q1'> <label for='q1'>开启</label></li>
+                                <li><input type="radio" value='1'   name='status' id='q2'> <label for='q2'>关闭</label></li>
+                            </ul>
+                        </div>
+                    </div>
+        			      		
         		<div class="mws-button-row">
         			<input class="btn btn-info" type="submit" value="提交">
         			<input class="btn btn-danger " type="reset" value="重置">
@@ -45,7 +58,7 @@
     	$('input[name=name]').mousedown(function(){
     		$('span[id=span]').html('<span class="mws-panel-header" style="color:yellow;background:black">  请输入汉字</span>');
     	});
-    	$('[name=title]').mouseup(function(){
+    	$('[name=pid]').mouseup(function(){
     		$('span[id=span]').html('');
 
     	});
