@@ -162,7 +162,6 @@ class CategoryController extends Controller
        }
        // 执行修改
          $cate =Category::where('id','=',$id)->first();
-        
          $cate->name =$request->input('name');
          $cate->pid =$request->input('pid','');
          $cate->status =$request->input('status',1);
