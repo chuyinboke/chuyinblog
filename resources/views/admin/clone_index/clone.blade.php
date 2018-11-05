@@ -255,6 +255,7 @@
             
             <!-- 目录栏 -->
             <div id="mws-navigation">
+            <!-- 用户管理 -->
                 <ul>
                     <li>
                         <a href="/a/#"><i class="icon-users"></i>用户管理</a>
@@ -264,8 +265,8 @@
                         </ul>
                     </li>
                 </ul>
-
-                   <ul>
+            <!-- 分类管理 -->
+                <ul>
                     <li>
                         <a href="/a/#"><i class="icon-align-left"></i>分类管理</a>
                         <ul>
@@ -274,7 +275,7 @@
                         </ul>
                     </li>
                 </ul>
-
+            <!-- 文章管理 -->
                 <ul>
                     <li>
                         <a href="/a/#"><i class="icon-list"></i>文章管理</a>
@@ -283,8 +284,18 @@
                             <li><a href="/admin/article">文章列表</a></li>
                         </ul>
                     </li>
-                </ul>   
-                   
+                </ul>
+           <!-- 友情链接 -->
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-firefox"></i>友情链接</a>
+                        <ul>
+                            <li><a href="/admin/links/create">添加链接</a></li>
+                            <li><a href="/admin/links">链接列表</a></li>
+                            <li><a href="/admin/links">链接申请</a></li>
+                        </ul>
+                    </li>
+                </ul>    
 
 
             </div>         

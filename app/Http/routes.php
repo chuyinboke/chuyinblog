@@ -50,6 +50,8 @@ Route::get('/admin','Admin\IndexController@index');
 
 //文章的路由
 Route::resource('/admin/article','Admin\ArticleConteoller');
+//友情链接的路由
+Route::resource('/admin/links','Admin\linksController');
 
 
 

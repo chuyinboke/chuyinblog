@@ -17,6 +17,7 @@
         <div class="mws-panel-body no-padding">
         	<form class="mws-form" action="/admin/cate" method='post'>
         		{{ csrf_field()}}
+                {{ method_field('PUT') }}
         		<div class="mws-form-inline">
         			<div class="mws-form-row">
         				<label class="mws-form-label">分类修改</label>

@@ -113,7 +113,6 @@ class CategoryController extends Controller
             'name.regex' => '格式不正确，请填写中文'
         ]);
          $cate =Category::where('id','=',$id)->first();
-        
          $cate->name =$request->input('name');
          $cate->title =$request->input('title');
          $cate->updated_at =time();
