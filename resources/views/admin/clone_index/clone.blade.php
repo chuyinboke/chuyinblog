@@ -310,8 +310,18 @@
                             <li><a href="/admin/links">链接申请</a></li>
                         </ul>
                     </li>
-                </ul>    
+                </ul>
 
+            <!-- 公告管理 -->
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>轮播图管理</a>
+                        <ul>
+                            <li><a href="/admin/rotation/create">添加轮播图</a></li>
+                            <li><a href="/admin/rotation">轮播图列表</a></li>
+                        </ul>
+                    </li>
+                </ul>    
 
             </div>         
         </div>

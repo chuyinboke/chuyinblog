@@ -68,7 +68,8 @@ Route::get('/admin','Admin\IndexController@index');
 Route::resource('/admin/article','Admin\ArticleConteoller');
 //友情链接的路由
 Route::resource('/admin/links','Admin\linksController');
-
+//轮播图的路由
+Route::resource('/admin/rotation','Admin\rotationController');
 
 
 
