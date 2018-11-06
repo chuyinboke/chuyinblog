@@ -312,7 +312,7 @@
                     </li>
                 </ul>
 
-            <!-- 公告管理 -->
+            <!-- 轮播图管理 -->
                 <ul>
                     <li>
                         <a href="/a/#"><i class="icon-newspaper"></i>轮播图管理</a>
@@ -321,8 +321,35 @@
                             <li><a href="/admin/rotation">轮播图列表</a></li>
                         </ul>
                     </li>
-                </ul>    
-
+                </ul>
+            <!-- 评论管理 -->
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>评论管理</a>
+                        <ul>
+                            <li><a href="">文章评论列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            <!-- 回收站 -->
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>回收站</a>
+                        <ul>
+                            <li><a href="">用户回收列表</a></li>
+                            <li><a href="">文章回收列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            <!-- 网站配置 -->
+                  <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>网站配置</a>
+                        <ul>
+                            <li><a href="">网站配置</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>         
         </div>
         

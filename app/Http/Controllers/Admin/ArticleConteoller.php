@@ -7,10 +7,24 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Article;
+use App\Model\Category;
 use App\Http\Requests\ArticleStoreRequest;
 use DB;
 class ArticleConteoller extends Controller
 {
+    public static function getCates()
+    {
+        $cate =Category::select('*',DB::raw("concat(path,',',id) as paths "))->orderBy('paths','asc')->get();
+
+        foreach ($cate as $key => $value) {
+            // 统计逗号 出现的次次数
+           $n = substr_count($value['path'],',');
+           // 拼接名称
+           $cate[$key]['name'] = str_repeat('|----',$n).$value['name'];
+
+        }
+        return $cate;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -25,8 +39,7 @@ class ArticleConteoller extends Controller
         //加载数据
         $article = Article::where('title','like','%'.$search.'%')->paginate($showcount);
         //加载模板
-        return view('admin.article.index',['title'=>'文章列表','article'=>$article,'date'=>$date]);
-        
+        return view('admin.article.index',['title'=>'文章列表','article'=>$article,'date'=>$date,'cate'=>self::getCates()]);
     }
 
     /**
@@ -37,7 +50,7 @@ class ArticleConteoller extends Controller
     public function create()
     {
         //
-       return view('admin.article.article',['title'=>'文章添加']);
+       return view('admin.article.article',['title'=>'文章添加','cate'=>self::getCates()]);
     }
 
     /**
@@ -105,7 +118,7 @@ class ArticleConteoller extends Controller
        $data = Article::where('id','=',$id)->first();
        // dump($data);
        //加载模板
-       return view('/admin.article.edit',['title'=>'文章修改','data'=>$data]);
+       return view('/admin.article.edit',['title'=>'文章修改','data'=>$data,'cate'=>self::getCates()]);
     }
 
     /**

@@ -23,6 +23,7 @@
             </form>
          
         <table class="mws-table">
+            
             <thead>
                 <tr>
                     <th>ID</th>
@@ -35,7 +36,7 @@
                     <th>操作</th>
                 </tr>
             </thead>
-
+               
             <tbody>
             @foreach($article as $k=>$v )
                 <tr>
@@ -43,7 +44,13 @@
                     <td>{{ $v['title'] }}</td>
                     <td>{{ $v['editrs'] }}</td>
                     <td>{{ $v['source'] }}</td>
-                    <td>{{ $v['fenlei'] }}</td>
+                    <td> 
+                        @foreach($cate as $key=>$value)
+                           @if($value['id'] == $v['fenlei'])
+                                {{$value['name']}}
+                           @endif            
+                        @endforeach
+                    </td>
                     <td>{{ $v['created_at'] }}</td>
                     <td>{{ $v['updated_at'] }}</td>
                     <td>

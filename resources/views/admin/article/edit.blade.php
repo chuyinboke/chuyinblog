@@ -31,10 +31,10 @@
                     				<label class="mws-form-label">文章分类</label>
                     				<div class="mws-form-item">
                     					<select class="small" name='fenlei' value="{{ $data['fenlei'] }}">
-                    						<option value="1">爱情</option>
-                    						<option value="2">技术</option>
-                    						<option value="3">校园</option>
-                    						<option value="4">亲情</option>
+                    						<option value='0'>----请选择-----</option>
+                                            @foreach($cate as $k => $v)
+                                            <option value='{{ $v['id']}}'>{{ $v['name']}}</option>
+                                            @endforeach
                     					</select>
                     				</div>
                     			</div>

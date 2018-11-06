@@ -81,7 +81,7 @@ class CategoryController extends Controller
             'name.unique' => '已有此分类',
             'name.regex' => '格式不正确，请填写中文'
         ]);
-        dump($request->except('_token'));
+        
         // 获取当前的分类是否顶级分类
          $pid =$request->input('pid','');     
         if($pid == 0){
@@ -160,6 +160,17 @@ class CategoryController extends Controller
         return back()->with('error','当前分类有子分类，不允许修改');
         exit;
        }
+         // 获取当前的分类是否顶级分类
+         $pid =$request->input('pid','');     
+        if($pid == 0){
+            // 顶级
+            $path = 0;
+        }else{
+            // 获取当前父级的pid
+            $parent =Category::find($pid);   
+            // 拼接子级的路径
+            $path =$parent['path'].','.$parent['id'];
+        }
        // 执行修改
          $cate =Category::where('id','=',$id)->first();
          $cate->name =$request->input('name');
