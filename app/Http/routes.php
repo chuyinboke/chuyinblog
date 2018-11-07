@@ -124,8 +124,16 @@ Route::resource('/admin/rotation','Admin\rotationController');
 
 //前台开始
 Route::get('/home','Home\IndexController@Index');
-
-
+// 注册路由
+Route::resource('/login','Home\LoginController');
+// 登陆路由
+Route::resource('/loginuser','Home\LoginuserController');
+// 退出。删除session 路由
+Route::get('/del','Home\LoginuserController@del');
+// 个人中心路由
+Route::resource('/person','Home\PersonController');
+// 分类路由
+Route::resource('/cate','Home\CateController');
 
 
 

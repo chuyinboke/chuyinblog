@@ -6,31 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\User;
-use App\Model\Notice;
-use App\Model\Category;
 use DB;
+use App\Model\Category;
 
-class IndexController extends Controller
+class CateController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $id,$request)
     {
-        // 公告表
-        $notice =Notice::all();
-         //  父级
-        $category =Category::all();
-    
-        // 分类表 子级
-        $categorys=DB::select("select * from category where pid > 0");
-       
-
-        
-        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys]);
+        echo '列表页';
     }
 
     /**
@@ -40,7 +28,7 @@ class IndexController extends Controller
      */
     public function create()
     {
-        //
+        echo '添加';
     }
 
     /**
@@ -51,7 +39,7 @@ class IndexController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        echo '执行添加';
     }
 
     /**
@@ -62,7 +50,9 @@ class IndexController extends Controller
      */
     public function show($id)
     {
-        //
+        $cates =DB::select("select * from category where id =".$id);
+        $cate =Category::where('pid','=',$id)->paginate(5);
+        return  view('Home.Cate.list',['cate'=>$cate,'cates'=>$cates]);
     }
 
     /**
@@ -73,7 +63,7 @@ class IndexController extends Controller
      */
     public function edit($id)
     {
-        //
+        echo '修改';
     }
 
     /**
@@ -85,7 +75,7 @@ class IndexController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        echo  '执行修改';
     }
 
     /**
@@ -96,6 +86,6 @@ class IndexController extends Controller
      */
     public function destroy($id)
     {
-        //
+        echo '删除';
     }
 }

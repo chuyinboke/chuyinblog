@@ -6,12 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\User;
-use App\Model\Notice;
-use App\Model\Category;
 use DB;
+use App\Model\Person;
+use App\Model\User;
 
-class IndexController extends Controller
+class PersonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,27 +19,22 @@ class IndexController extends Controller
      */
     public function index()
     {
-        // 公告表
-        $notice =Notice::all();
-         //  父级
-        $category =Category::all();
-    
-        // 分类表 子级
-        $categorys=DB::select("select * from category where pid > 0");
-       
-
-        
-        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys]);
+        return view('Home.Login.person');
     }
 
     /**
-     * Show the form for creating a new resource.
+     * 修改
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+    $user =session('username');
+    // 获取用户的数据
+    $all =User::where('username','=',$user)->first();
+    // 获取用户个人信息
+    $person =$all->userperson;
+    return view('Home.Login.edit',['all'=>$all,]);
     }
 
     /**
@@ -73,7 +67,7 @@ class IndexController extends Controller
      */
     public function edit($id)
     {
-        //
+        dump(session('username'));
     }
 
     /**

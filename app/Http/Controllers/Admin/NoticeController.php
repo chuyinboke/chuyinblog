@@ -112,6 +112,7 @@ class NoticeController extends Controller
           $notice =Notice::where('id','=',$id)->first();
           $notice->title =$request->input('title');
           $notice->count =$request->input('count');
+          $notice->status =$request->input('status');
           $notice->updated_at =time();
           $notice->save();
           if($notice){

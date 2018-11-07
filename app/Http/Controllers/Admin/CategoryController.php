@@ -81,7 +81,6 @@ class CategoryController extends Controller
             'name.unique' => '已有此分类',
             'name.regex' => '格式不正确，请填写中文'
         ]);
-        
         // 获取当前的分类是否顶级分类
          $pid =$request->input('pid','');     
         if($pid == 0){
@@ -173,6 +172,7 @@ class CategoryController extends Controller
         }
        // 执行修改
          $cate =Category::where('id','=',$id)->first();
+
          $cate->name =$request->input('name');
          $cate->pid =$request->input('pid','');
          $cate->status =$request->input('status',1);
