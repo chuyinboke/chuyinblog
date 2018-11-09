@@ -307,7 +307,7 @@
                         <ul>
                             <li><a href="/admin/links/create">添加链接</a></li>
                             <li><a href="/admin/links">链接列表</a></li>
-                            <li><a href="/admin/links">链接申请</a></li>
+                            <li><a href="/admin/homelinks">链接申请</a></li>
                         </ul>
                     </li>
                 </ul>

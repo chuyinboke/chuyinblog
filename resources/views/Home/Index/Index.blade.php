@@ -12,31 +12,30 @@
 			</button>
 		</div>
 
-		<!-- Menu -->
+		<!-- 分类 -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			@foreach($category as $v)
 			<ul class="nav navbar-nav">
-			
 				<!-- 导航栏 -->
 				<li class="dropdown">
-					<!-- <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">分类<span class="caret"></span></a> -->
+					@if($v['pid'] == 0)
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						{{ $v['name']}}
+						<span class="caret"></span>
+					</a>
+					@endif
+
 					<ul class="dropdown-menu">
-						<li><a href="category.html">文章</a></li>
-						<li><a href="category.html">图片</a></li>
-						<li><a href="category.html">我的</a></li>
-						<li><a href="category.html">睡的</a></li>
-						<li role="separator" class="divider"></li>
-						<li><a href="all-categories.html">查看全部</a></li>
+						@foreach($categorys as $key=>$value)
+							@if($v['id'] == $value['pid'])
+							<li><a href="/cate/{{ $value['id']}}">{{ $value['name'] }}</a></li>
+							@endif
+						@endforeach
 					</ul>
 				</li>
-				@foreach($category as $k => $v)
-				<!-- Other options -->
-				<li><a href="/cate/{{$v['id']}}">@if($v['pid'] == 0){{ $v['name']}} @endif</a></li>
-				@endforeach
-				<!-- <li><a href="#">博主简介</a></li> -->
-				<!-- <li><a href="faq.html">常见问题</a></li> -->
-				
 			</ul>
-
+			@endforeach
+			
 		</div>
 	</div>
 </nav>
@@ -75,30 +74,24 @@
 
 					<!-- 轮播框 -->
 					<div class="carousel-inner" role="listbox">
-
 						<!-- 轮播图内容 -->
 						<div class="item active">
 							<img src="/h/images/slider/4.jpg" alt="Image 1">
 							<div class="carousel-caption">
-								图片介绍
+								树荫下的MlKU
 							</div>
 						</div>
 
 						<!-- 轮播图内容 -->
+						@foreach($rotation as $k=>$v)
 						<div class="item">
-							<img src="/h/images/slider/5.jpg" alt="Image 2">
+							<img src="{{$v['image']}}" alt="Image 2">
 							<div class="carousel-caption">
-								图片介绍
+								{{$v['describe']}}
 							</div>
 						</div>
-
-						<!-- 轮播图内容 -->
-						<div class="item">
-							<img src="/h/images/slider/6.jpg" alt="Image 3">
-							<div class="carousel-caption">
-								图片介绍
-							</div>
-						</div>
+						@endforeach
+						
 					</div>
 
 					<!--  轮播左按钮 -->
@@ -150,7 +143,7 @@
 			</div>
 		</div>
 
-		<!-- 展示页面 -->
+<!-- 图片展示页面 -->
 		<div class="row">
 			<div class="col-sm-12">
 				<h4 class="title">最近的图片展示</h4>
@@ -158,42 +151,114 @@
 
 				<!-- 图片框架 -->
 				<div id="recent-photos">
-
-					
-
 					<!-- 图片展示 -->
 					<div class="item" id="photo_8">
 						<!-- Price ribbon -->
 						<div class="ribbon"><span>19$</span></div>
 					</div>
-
+					@foreach($rotation as $k=>$v)
+					<div class="item">
+						<!-- Price ribbon -->
+						<img src="{{ $v['image'] }}" style="width:279px;height:180px;">
+						<div class="ribbon"><span>{{$v['describe']}}</span></div>
+					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>
 		
 
-		<!-- 分类 -->
+		<!-- 文章详情 -->
 		<div class="">
+			<h4 class="title">最近的文章展示</h4>
 			<div class="col-sm-12">
-				
 				<div class="line-dec"></div>
 			</div>
 		</div>
-				
-				<!-- 第一横排4张图片 -->
-				
+		<!-- 最近文章的显示 -->
+		@foreach($article as $k=>$v)
+		<div class="media photo-list">
+			<!-- 文章图片显示 -->
+			<div class="media-left">
+				<a href="#">
+					<img class="media-object photo-list-image" alt="List photo" src="/h/images/photos/1.jpg">
+				</a>
+			</div>
+			<!-- 文章内容区 -->
 
-					<div class="col-sm-3">
-						<div class="category-block" >
-							
-								
-						</div>
-					</div>	
-			
-				
-		
-	
-
+			<div class="media-body">
+				<div class="row">
+					<!-- 标题来源详情 -->
+					<div class="col-sm-8">
+						<h4 class="media-heading photo-list-title">
+							标题: {{$v['title']}}<span class="badge">作者: {{$v['editrs']}}</span>
+						</h4>
+						<p class="text-justify photo-list-description">
+							来源:{{$v['source']}}
+						</p>
+					</div>
+					<!-- 文章按钮 -->
+					<div class="col-sm-4">
+						<a class="btn btn-block btn-success" href="#">查看详情</a>
+						<a class="btn btn-block btn-primary" href="picture.html">发表评论</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		@endforeach
 	</div>
 </div>
+	<!-- 尾部信息 -->
+<div class="container">
+	<div id="footer">
+		<div class="row">
+			<!-- 尾部信息栏 1 -->
+			<div class="col-sm-4">
+				<h4 class="footer-title">版权</h4>
+				<div class="line-dec"></div>
+				<ul>
+					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#legalModal">Legal advice</a></li>
+					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#termsModal">Terms and conditions</a></li>
+					<li><a href="about-us.html">About us</a></li>
+				</ul>
+			</div>
+
+			<!-- 尾部信息栏 2 -->
+			<div class="col-sm-4">
+				<h4 class="footer-title">尾部</h4>
+				<div class="line-dec"></div>
+				<ul>
+					<li><a href="#">New photos</a></li>
+					<li><a href="#">Top sellers</a></li>
+					<li><a href="#">Discount photos</a></li>
+				</ul>
+			</div>
+
+			<!-- 尾部信息栏 3 -->
+			<div class="col-sm-4">
+				<h4 class="footer-title">友情连接</h4>
+				<div class="line-dec"><a href="/links/create"><h5>添加友情链接</h5></a></div>
+				<ul>
+					@foreach($links as $k=>$v)
+						@if($v['status'] == 1)
+						<li>
+							<a href="{{$v['url']}}" target="_blank" title="{{$v['title']}}">
+								<img src="{{$v['pic']}}" style="width:100px;height:40px;">
+							</a>
+						</li>
+						@endif
+					@endforeach
+				</ul>
+			</div>
+
+			<!-- 版权信息 -->
+			<p>Copyright &copy; 2017.Company name All rights reserved.More Templates 
+				<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
+				 - Collect from 
+				 <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
+			</p>
+		</div>
+	</div>
+</div>
+
 @endsection

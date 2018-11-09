@@ -25,12 +25,12 @@
                     </div>
                </div>    
                <div class="mws-form-inline">
-     				<div class="mws-form-row">
-     					<label class="mws-form-label">网站LOGO</label>
-     					<div class="mws-form-item">
-     						<input type="file" class="small" name="pic">
-     					</div>
-     				</div>
+           				<div class="mws-form-row">
+           					<label class="mws-form-label">网站LOGO</label>
+           					<div class="mws-form-item">
+           						<input type="file" class="small" name="pic">
+           					</div>
+           				</div>
                </div>
                <div class="mws-form-inline">
                    <div class="mws-form-row">

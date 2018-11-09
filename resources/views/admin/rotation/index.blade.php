@@ -42,12 +42,12 @@
          			<td>{{ $v['name'] }}</td>
          			<td><img src="{{ $v['image'] }}" style="width:150px;height:80px"></td>
          			<td>{{ $v['describe'] }}</td>
-         			<td> 
-                        @if($v['status']== 1)
-                            <span style="background:#ccc;color:yellow">开启</span>
-                        @else 
-                            <span style="background:#ccc;color:red;">禁用</span>
-                        @endif    
+         			 <td>
+                        @if($v['status'] == 1)
+                        <button style='color:yellow;background:black'>开启</button>
+                        @else
+                        <button style='color:red;background:black'>关闭</button>
+                        @endif
                     </td>
                       <td>
                         <a href="/admin/rotation/{{$v['id']}}/edit" class="btn btn-warning">修改</a>

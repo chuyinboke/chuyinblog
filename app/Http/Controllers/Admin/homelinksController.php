@@ -1,20 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\User;
-use App\Model\Notice;
-use App\Model\Category;
-use App\Model\rotation;
 use App\Model\links;
-use App\Model\Article;
 use DB;
-
-class IndexController extends Controller
+class homelinksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,22 +17,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        // 公告表
-        $notice =Notice::all();
-         //分类表 父级
-        $category =Category::all();
-        //分类表 子级
-        $categorys=DB::select("select * from category where pid > 0");
-       //轮播图接受数据库数据
-       $rotation = rotation::all();
-       //友情链接接受数据库数据
-       $links = links::all();
-       //文章显示 接收数据库 
-       $article = Article::all();
-       // dump($article);
-
-        
-        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys,'rotation'=>$rotation,'links'=>$links,'article'=>$article]);
+        //从数据库取数据
+        $links=DB::select("select * from links where status = 0");
+        // dump($links);
+        //加载模板
+        return view('admin.links.homelinks',['title'=>'审核友情链接','links'=>$links]);
     }
 
     /**
@@ -49,7 +32,7 @@ class IndexController extends Controller
     public function create()
     {
         //
-       
+        
     }
 
     /**
@@ -82,7 +65,9 @@ class IndexController extends Controller
      */
     public function edit($id)
     {
-        //
+        //接收数据
+         $data =Links::where('id','=',$id)->first();
+         return view('admin.links.homeedit',['title'=>'审核页面','data'=>$data]);
     }
 
     /**
@@ -94,7 +79,15 @@ class IndexController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //接收数据
+        $hlinks =Links::where('id','=',$id)->first();
+        $hlinks->status = $request->input('status');
+        $hlinks->save();
+          if($hlinks){
+            return redirect('/admin/links')->with('success','审核通过');
+          }else{
+            return back('')->with('error','审核不通过');
+          }
     }
 
     /**
@@ -105,6 +98,12 @@ class IndexController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //获取数据 删除数据
+        $res = Links::destroy($id);
+        if($res){
+            return redirect('/admin/links')->with('success','删除成功');
+        }else{
+            return back()->whit('error','删除失败');
+        }
     }
 }

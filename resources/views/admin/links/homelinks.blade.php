@@ -32,42 +32,41 @@
                     <th>网站名称</th>
                     <th>网站地址</th>
                     <th>网站LOGO</th>
+                    <th>申请时间</th>
                     <th>链接状态</th>
-                    <th>链接操作</th>
+                    <th>链接审核</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($data as $k=>$v)
-                <tr>
-                    <td>{{ $v['id'] }}</td>
-                    <td>{{ $v['title'] }}</td>
-                    <td>{{ $v['url'] }}</td>
-                    <td><img src="{{ $v['pic'] }}" style="width:100px;height:30px"></td>
-                     <td>
-                        @if($v['status'] == 1)
-                        <button style='color:yellow;background:black'>开启</button>
-                        @else
-                        <button style='color:red;background:black'>关闭</button>
-                        @endif
+            	@foreach($links as $k=>$v)
+ 				<tr>
+ 					<td>{{ $v['id'] }}</td>
+ 					<td>{{ $v['title'] }}</td>
+ 					<td>{{ $v['url'] }}</td>
+ 					<td><img src="{{ $v['pic'] }}" style='width:100px;height:60px;'></td>
+ 					<td>{{$v['created_at']}}</td>
+ 					<td class=" ">
+                    	@if($v['status'] == 0)
+                      	<button style="color:red;background:black">待审核</button>
+                      	@endif
                     </td>
-                    <td>
-                        <a href="/admin/links/{{$v['id']}}/edit" class="btn btn-warning">修改</a>
-                        <form action="/admin/links/{{$v['id']}}" method="post" style="display:inline-block">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                           <input type="submit" value="删除" class="btn btn-danger"> 
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
+ 					<td>
+ 						<a href="/admin/homelinks/{{$v['id']}}/edit" class='btn btn-warning'>审核</a>
+ 						<form action="/admin/homelinks/{{$v['id']}}" method="post" style='display:inline-block'>
+ 							{{ csrf_field()}}
+                          	{{ method_field('DELETE')}}
+ 							<input type="submit" name="" value="不审核" class='btn btn-danger'>
+ 						</form>
+ 					</td>
+ 				</tr>
+ 				@endforeach
             </tbody>
         </table>
         <div class="dataTables_info" id="DataTables_Table_1_info">Showing 1 to 10 of 57 entries
             
         </div>
           <div id='page_page'>
-                {!! $data->render() !!}
-        
+                
             </div>
     </div>
 </div>

@@ -70,7 +70,8 @@ Route::resource('/admin/article','Admin\ArticleConteoller');
 Route::resource('/admin/links','Admin\linksController');
 //轮播图的路由
 Route::resource('/admin/rotation','Admin\rotationController');
-
+//前台申请友情链接路由
+Route::resource('/admin/homelinks','Admin\homelinksController');
 
 
 
@@ -154,3 +155,35 @@ Route::resource('/cate','Home\CateController');
 
 
 // 前台路由
+//前台添加友情链接路由啊
+Route::resource('/links','Home\linksController');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

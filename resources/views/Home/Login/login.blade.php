@@ -9,8 +9,6 @@
         </ul>
     </div>
 @endif
-
-	
 		<!-- Shopping cart -->
 		<div class="container absolute cart-container">
 			<div class="shopping-cart">
