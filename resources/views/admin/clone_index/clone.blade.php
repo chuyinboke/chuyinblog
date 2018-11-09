@@ -92,7 +92,7 @@
         
             <!-- Logo Wrapper, images put within this wrapper will always be vertically centered -->
             <div id="mws-logo-wrap">
-                <img src="/a/images/mws-logo.png" alt="mws admin">
+                <a href="/home"><img src="/a/images/mws-logo.png" alt="mws admin"></a>
             </div>
         </div>
         
@@ -225,12 +225,11 @@
                 <!-- Username and Functions -->
                 <div id="mws-user-functions">
                     <div id="mws-username">
-                        Hello, John Doe
+                        管理员 ：{{ session('admin')}}
                     </div>
                     <ul>
-                        <li><a href="/a/#">Profile</a></li>
-                        <li><a href="/a/#">Change Password</a></li>
-                        <li><a href="/a/index.html">Logout</a></li>
+                        <li><a href="/home">首页</a></li>
+                        <li><a href="/deladmin">退出</a></li>
                     </ul>
                 </div>
             </div>
@@ -336,8 +335,8 @@
                     <li>
                         <a href="/a/#"><i class="icon-newspaper"></i>回收站</a>
                         <ul>
-                            <li><a href="">用户回收列表</a></li>
-                            <li><a href="">文章回收列表</a></li>
+                            <li><a href="/recycle">用户回收列表</a></li>
+                            <li><a href="/recyclewz">文章回收列表</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -346,7 +345,7 @@
                     <li>
                         <a href="/a/#"><i class="icon-newspaper"></i>网站配置</a>
                         <ul>
-                            <li><a href="">网站配置</a></li>
+                            <li><a href="/config/create">网站配置</a></li>
                         </ul>
                     </li>
                 </ul>

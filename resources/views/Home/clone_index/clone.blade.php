@@ -1,3 +1,8 @@
+<?php  
+use App\Model\Config;
+$config =Config::all();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +11,9 @@
 <meta name="keywords" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+@foreach($config as $k => $v)
 <!-- Title -->
-<title></title>
+<title>{{$v['title']}}</title>
 
 <!-- Favicon -->
 <link rel="icon" href="/h/favicon.ico" type="image/x-icon" />
@@ -48,7 +53,7 @@
 			<div class="col-xs-12 col-sm-5 col-md-4 flex">
 				<a href="/home">
 					<!-- Logo -->
-					<img src="/h/images/logos.png" class="logo img-responsive" alt="PhotoMarket">
+					<img src="{{ $v['logo']}}" class="logo img-responsive" alt="PhotoMarket" style="width:327px ;height:90px">
 				</a>
 			</div>
 
@@ -131,11 +136,11 @@
 			</div>
 
 			<!-- Copyright -->
-			<p>Copyright &copy; 2017.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+			<p> {{ $v['copyright']}}</p>
 		</div>
 	</div>
 </div>
-
+@endforeach
 <!-- Modal Legal advice -->
 <div class="modal fade" id="legalModal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">

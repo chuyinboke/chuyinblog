@@ -19,7 +19,14 @@ class PersonController extends Controller
      */
     public function index()
     {
-        return view('Home.Login.person');
+         $user =session('username');
+        // 获取用户的数据
+        $all =User::where('username','=',$user)->first();
+        dump($all);
+        // 获取用户个人信息
+        $person =$all->userperson;
+    
+        return view('Home.Login.person',['all'=>$all,'person'=>$person]);
     }
 
     /**
@@ -34,7 +41,7 @@ class PersonController extends Controller
     $all =User::where('username','=',$user)->first();
     // 获取用户个人信息
     $person =$all->userperson;
-    return view('Home.Login.edit',['all'=>$all,]);
+    return view('Home.Login.edit',['all'=>$all,'person'=>$person]);
     }
 
     /**
@@ -45,7 +52,52 @@ class PersonController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 对数据进行验证
+          $this->validate($request,[
+              'username' => 'required|unique:user|regex:/^[a-zA-Z]{1}[\w]{7,15}$/',
+            'password' => 'required|regex:/^[\w]{6,18}$/',
+            'repassword' => 'required|same:password',
+            'email' => 'required|email',
+            'phone' => 'required|regex:/^1{1}[345678]{1}[\d]{9}$/'
+
+        ],[ 
+            // 字段错误提示信息
+            'username.required' => '用户名不许为空',
+            'username.regex' => '用户名格式错误',
+            'username.unique' => '用户名已存在',
+            'password.required' => '密码不许为空',
+            'password.regex' => '密码格式不正确',
+            'repassword.same' => '两次密码不一致',
+            'repassword.required' => '确认密码不许为空',
+            'email.email' => '邮箱格式不正确',
+            'email.required' => '邮箱不许为空',
+            'phone.required' => '手机号不许为空',
+            'phone.regex' => '手机号格式不正确'    
+        ]);
+    
+      
+    // 用户修改
+     $user =User::where('username','=',session('username'))->first();
+     $user->username =$request->input('username');
+     $user->password =$request->input('password');
+     $user->email =$request->input('email');
+     $user->phone =$request->input('phone');
+    $users = $user->save();
+     
+    // //个人资料修改
+    $person =Person::where('uid','=',$user['id'])->first();
+    $person->birthday =$request->input('birthday');
+    $person->like =$request->input('like');
+    $person->hy =$request->input('hy');
+    $person->qm =$request->input('qm');
+    $persons= $person->save();
+    if($users && $persons){
+            session(['username'=>$user['username']]);
+          echo "<script>alert('修改成功');location.href='/home'</script>";
+    }else{
+           echo "<script>alert('修改失败');location.href='/person/create'</script>";
+
+    }
     }
 
     /**
