@@ -8,6 +8,8 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersStoreRequest;
 use App\Model\User;
+use App\Model\Person;
+
 
 class LoginController extends Controller
 {
@@ -60,6 +62,7 @@ class LoginController extends Controller
             'phone.required' => '手机号不许为空',
             'phone.regex' => '手机号格式不正确'    
         ]);
+         // 注册用户
       $user =new User;
       $user->username =$request->input('username');
       $user->password =$request->input('password');
@@ -69,6 +72,12 @@ class LoginController extends Controller
       $user->updated_at =time();
       $user->save();
      
+      // 查询对应用户名的  id
+        $user =User::where('username','=',$user['username'])->first();
+      $person =new Person;
+        // 用户的id  =  个人资料的 uid
+        $person->uid =$user['id'];
+        $person->save();
        if($user){
             echo "<script>alert('注册成功，赶紧登陆吧');location.href='/home'</script>";
            

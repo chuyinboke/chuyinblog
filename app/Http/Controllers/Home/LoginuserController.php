@@ -56,12 +56,6 @@ class LoginuserController extends Controller
         // 登陆获取的用户名和密码
          $username =$request->input('username');
         $pw =$request->input('password');
-        // 查询对应用户名的  id
-        $user =User::where('username','=',$username)->first();
-        $person =new Person;
-        // 用户的id  =  个人资料的 uid
-        $person->uid =$user['id'];
-        $person->save();
         // 检查数据库中是否存在
         session(['username'=>$username]);
         $res =DB::table('user')

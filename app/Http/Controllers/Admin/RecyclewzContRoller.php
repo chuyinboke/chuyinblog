@@ -1,52 +1,34 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
+use App\Model\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\User;
-use App\Model\Notice;
-use App\Model\Category;
-use App\Model\rotation;
-use App\Model\links;
-use App\Model\Article;
-use DB;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class IndexController extends Controller
+class RecyclewzContRoller extends Controller
 {
+     use SoftDeletes;
+
+
     /**
-     * Display a listing of the resource.
+     *  文章回收站列表
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // 公告表
-        $notice =Notice::all();
-         //分类表 父级
-        $category =Category::all();
-        //分类表 子级
-        $categorys=DB::select("select * from category where pid > 0");
-       //轮播图接受数据库数据
-       $rotation = rotation::all();
-       //友情链接接受数据库数据
-       $links = links::all();
-       //文章显示 接收数据库 
-       $article = Article::all();
-       // dump($article);
+        $date =$request->all();
+        $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
+        $search =$request->input('search');
+          // 获取被删除的数据
+         $article =Article::onlyTrashed()->where('title','like','%'.$search.'%')->paginate($showcount);
 
-        
-        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys,'rotation'=>$rotation,'links'=>$links,'article'=>$article]);
+    return view('admin.recycle.articlelist',['article'=>$article,'title'=>'文章回收站','date'=>$date]);
     }
-    /**
-     *  网站维护页面
-     */
-    public function modify()
-    {
-       return view('Home.Index.modify');
-    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -55,7 +37,6 @@ class IndexController extends Controller
     public function create()
     {
         //
-       
     }
 
     /**
@@ -81,14 +62,19 @@ class IndexController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     *  恢复被删除的文章数据
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        //
+         $article =Article::withTrashed()->where('id','=', $id)->restore();      
+      if($article){
+             return redirect('/recyclewz')->with('success','恢复成功');
+         }else{
+             return redirect('/recyclewz')->with('error','恢复失败');
+         }
     }
 
     /**
@@ -111,6 +97,12 @@ class IndexController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $article =Article::withTrashed()->where('id','=', $id);      
+      if($article->forceDelete()){
+             return redirect('/recyclewz')->with('success','删除成功');
+         }else{
+             return redirect('/recyclewz')->with('error','删除失败');
+         }
+     
     }
 }

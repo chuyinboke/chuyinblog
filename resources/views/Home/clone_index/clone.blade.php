@@ -1,3 +1,8 @@
+<?php  
+use App\Model\Config;
+$config =Config::all();
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +11,9 @@
 <meta name="keywords" content="">
 <meta name="author" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+@foreach($config as $k => $v)
 <!-- Title -->
-<title></title>
+<title>{{$v['title']}}</title>
 
 <!-- Favicon -->
 <link rel="icon" href="/h/favicon.ico" type="image/x-icon" />
@@ -48,7 +53,7 @@
 			<div class="col-xs-12 col-sm-5 col-md-4 flex">
 				<a href="/home">
 					<!-- Logo -->
-					<img src="/h/images/logos.png" class="logo img-responsive" alt="PhotoMarket">
+					<img src="{{ $v['logo']}}" class="logo img-responsive" alt="PhotoMarket" style="width:327px ;height:90px">
 				</a>
 			</div>
 
@@ -91,7 +96,49 @@
 @section('content') 
 
 @show
+<!-- 尾部信息 -->
+<div class="container">
+	<div id="footer">
+		<div class="row">
+			<!-- Information column -->
+			<div class="col-sm-4">
+				<h4 class="footer-title">Information</h4>
+				<div class="line-dec"></div>
+				<ul>
+					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#legalModal">Legal advice</a></li>
+					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#termsModal">Terms and conditions</a></li>
+					<li><a href="about-us.html">About us</a></li>
+				</ul>
+			</div>
 
+			<!-- Offers column -->
+			<div class="col-sm-4">
+				<h4 class="footer-title">Our offers</h4>
+				<div class="line-dec"></div>
+				<ul>
+					<li><a href="#">New photos</a></li>
+					<li><a href="#">Top sellers</a></li>
+					<li><a href="#">Discount photos</a></li>
+				</ul>
+			</div>
+
+			<!-- Account column -->
+			<div class="col-sm-4">
+				<h4 class="footer-title">Your account</h4>
+				<div class="line-dec"></div>
+				<ul>
+					<li><a href="account.html">Your profile</a></li>
+					<li><a href="#">Personal information</a></li>
+					<li><a href="#">Shopping history</a></li>
+				</ul>
+			</div>
+
+			<!-- Copyright -->
+			<p> {{ $v['copyright']}}</p>
+		</div>
+	</div>
+</div>
+@endforeach
 <!-- Modal Legal advice -->
 <div class="modal fade" id="legalModal" tabindex="-1" role="dialog">
 	<div class="modal-dialog" role="document">

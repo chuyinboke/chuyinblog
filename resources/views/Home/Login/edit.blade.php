@@ -1,10 +1,21 @@
 @extends('Home.clone_index.clone')
 @section('content')
-		<form class="form-horizontal" >
+<!-- 显示验证错误信息 -->
+	@if (count($errors) > 0)
+    <div class="alert alert-warning alert-dismissible">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div> 
+	@endif
+		<form class="form-horizontal"  action="/person" method='post'>
+			{{ csrf_field()}}
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
 			    <div class="col-sm-10">
-			      <input type="text" class="form-control" id="inputEmail3" placeholder="{{$all[0]['username']}}"  name='username' style="width:500px">
+			      <input type="text" class="form-control" id="inputEmail3" placeholder="{{$all['username']}}"  name='username' style="width:500px">
 			    </div>
 			  </div>
 			  <div class="form-group">
@@ -17,39 +28,41 @@
 			    <label for="inputPassword3" class="col-sm-2 control-label">确认密码：</label>
 			    <div class="col-sm-10">
 			      <input type="password" class="form-control" id="inputPassword3" placeholder="******" name='repassword' style="width:500px">
-			    </div>
+			    </div>s
 			  </div>
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">头像:</label>
-			    <div class="col-sm-10">
-			      <input type="file"   placeholder="" name='pic' >
-			    </div>
-						  </div>
+	
 			   <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">生日:</label>
 			    <div class="col-sm-10">
-			      <input type="date" class="form-control" id="inputPassword3" placeholder="" name='repassword' style="width:500px">
+			      <input type="date" class="form-control" id="inputPassword3" placeholder="{{ $person['birthday'] or ''}}" name='birthday' style="width:500px">
 			    </div>
 			  </div>
 		    <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">爱好：</label>
 			    <div class="col-sm-10">
-			    <input type="checkbox" name="che" value='1' checked>运动 &nbsp;
-			     <input type="checkbox" name="che" value='2'>旅游 &nbsp;
-			     <input type="checkbox" name="che" value='3'>游泳 &nbsp;
-			     <input type="checkbox" name="che" value='4'>看书 &nbsp;
-			     <input type="checkbox" name="che" value='5'>美食 &nbsp;
+		      	<input type="text"  id="inputPassword3" class="form-control" placeholder="" name='like'  style="width:500px"  >
 			  	</div>
 			</div>
 		   <div class="form-group">
 		    	<label for="inputPassword3" class="col-sm-2 control-label">婚姻状况：</label>
 		    	<div class="col-sm-10">
-		      	<input type="radio"  id="inputPassword3" placeholder="" name='hy[]' value='1' checked>单身狗 &nbsp;
-		      	<input type="radio"  id="inputPassword3" placeholder="" name='hy[]' value='2'>已婚 &nbsp;
-		    </div>
+		      	<input type="text"  id="inputPassword3" class="form-control" placeholder="" name='hy'  style="width:500px" >
+		      	</div>
 		  </div>
+		   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">电子邮箱：</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputPassword3" placeholder="" name='email' style="width:500px">
+			    </div>
+			  </div>
+			   <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">电话号码：</label>
+			    <div class="col-sm-10">
+			      <input type="text" class="form-control" id="inputPassword3" placeholder="" name='phone' style="width:500px">
+			    </div>
+			  </div>
 		  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">个性签名</label>
+			    <label for="inputPassword3" class="col-sm-2 control-label">个性签名：</label>
 			    <div class="col-sm-10">
 			      <input type="text" class="form-control" id="inputPassword3" placeholder="" name='qm' style="width:500px">
 			    </div>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Model\User;
 
 class IndexController extends Controller
 {
@@ -19,70 +20,37 @@ class IndexController extends Controller
         // 后台首页
        return view('admin.index.index');
     }
-
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * 后台登陆页面
      */
-    public function create()
+    public  function login()
     {
-        //
+        return view('admin.login.login');
     }
-
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * 后台登陆验证页面
      */
-    public function store(Request $request)
+    public function dologin(Request $request)
     {
-        //
+        $user =$request->input('username');
+        session(['admin'=>$user]);
+        $pw =$request->input('password');
+        $res =User::where('username','=',$user)->first();
+        $res2 =User::where('password','=',$pw)->first();
+        if($res && $res2 && $res['status'] == 0){
+             echo "<script>alert('登陆成功');location.href='/admin/index'</script>";
+        }else{
+               echo "<script>alert('登录失败，请重新登陆');location.href='/admin'</script>";
+        }
     }
-
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * 退出时删除管理员用户session
+     * 
      */
-    public function show($id)
+      public function del()
     {
-        //
+        session(['admin'=>null]);
+        return redirect('/home');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  
 }

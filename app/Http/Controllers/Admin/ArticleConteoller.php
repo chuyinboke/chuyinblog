@@ -12,6 +12,7 @@ use App\Http\Requests\ArticleStoreRequest;
 use DB;
 class ArticleConteoller extends Controller
 {
+
     public static function getCates()
     {
         $cate =Category::select('*',DB::raw("concat(path,',',id) as paths "))->orderBy('paths','asc')->get();

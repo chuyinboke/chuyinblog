@@ -19,12 +19,12 @@
 						<div class="line-dec"></div>
 
 						<ul class="list-group">
-							<li class="list-group-item"><b>昵称:</b> {{ $person['username'] or ''}}</li>
+							<li class="list-group-item"><b>昵称:</b> {{ $all['username'] or ''}}</li>
 							<li class="list-group-item"><b>生日:</b> {{ $person['birthday'] or ''}}</li>
 							<li class="list-group-item"><b>爱好：</b> <span class="badge">{{ $person['like'] or ''}}</span></li>
 							
-							<li class="list-group-item"><b>婚姻状况：</b> <span class="badge">{{ $person[''] or ''}}</span></li>
-							<li class="list-group-item"><b>电子邮箱：:</b>{{ $person['email'] or ''}}</li>
+							<li class="list-group-item"><b>婚姻状况：</b> <span class="badge">{{ $person['hy'] or ''}}</span></li>
+							<li class="list-group-item"><b>电子邮箱：:</b>{{ $all['email'] or ''}}</li>
 							<li class="list-group-item"><b>个性签名:</b>{{ $person['qm'] or ''}}</li>
 						</ul>
 

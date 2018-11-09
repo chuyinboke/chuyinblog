@@ -1,5 +1,5 @@
 <?php
-
+use App\model\Config;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -14,19 +14,28 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
-// 后台路由开始
-Route::get('/admin','Admin\IndexController@index');
+// 后台路由登陆
+Route::get('/admin','Admin\IndexController@login');
+// 登录验证
+Route::post('/admin/do','Admin\IndexController@dologin');
+// 成功进入后台
+Route::get('/admin/index','Admin\IndexController@index');
 // 用户的增删改查路由
  Route:resource('/admin/user','Admin\UserController');
  // 分类的增删改查路由
  Route::resource('admin/cate','Admin\CategoryController');
  // 公告的路由
  Route::resource('admin/notice','Admin\NoticeController');
-
-
-
-
+// 网站配置
+Route::resource('/config','Admin\ConfigController');
+// 点击退出，删除管理员session
+Route::get('/deladmin','Admin\IndexController@del');
+// 回收站用户列表
+Route::resource('/recycle','Admin\RecycleController');
+// 恢复被删除的用户数据
+Route::resource('/restore','Admin\RecycleController');
+// 回收站文章列表
+Route::resource('/recyclewz','Admin\RecyclewzContRoller');
 
 
 
@@ -118,13 +127,12 @@ Route::resource('/admin/homelinks','Admin\homelinksController');
 
 
 
-
-
-
-
-
-//前台开始
+$config =Config::find(1);
+if($config['status'] == 1){
+	//前台开始
 Route::get('/home','Home\IndexController@Index');
+
+
 // 注册路由
 Route::resource('/login','Home\LoginController');
 // 登陆路由
@@ -138,8 +146,11 @@ Route::resource('/cate','Home\CateController');
 
 
 
+}else{
 
-
+	// 网站维护状态
+	Route::get('/home','Home\IndexController@modify');
+}
 
 
 
