@@ -131,8 +131,6 @@ $config =Config::find(1);
 if($config['status'] == 1){
 	//前台开始
 Route::get('/home','Home\IndexController@Index');
-
-
 // 注册路由
 Route::resource('/login','Home\LoginController');
 // 登陆路由
@@ -143,8 +141,10 @@ Route::get('/del','Home\LoginuserController@del');
 Route::resource('/person','Home\PersonController');
 // 分类路由
 Route::resource('/cate','Home\CateController');
-
-
+// 查看文章详情路由
+Route::get('/cate/shows/{id}','Home\CateController@shows');
+// 发表帖子路由
+Route::resource('/publish','Home\PublishController');
 
 }else{
 

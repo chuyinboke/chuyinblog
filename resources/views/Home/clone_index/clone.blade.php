@@ -97,41 +97,7 @@ $config =Config::all();
 
 @show
 <!-- 尾部信息 -->
-<div class="container">
-	<div id="footer">
-		<div class="row">
-			<!-- Information column -->
-			<div class="col-sm-4">
-				<h4 class="footer-title">Information</h4>
-				<div class="line-dec"></div>
-				<ul>
-					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#legalModal">Legal advice</a></li>
-					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#termsModal">Terms and conditions</a></li>
-					<li><a href="about-us.html">About us</a></li>
-				</ul>
-			</div>
 
-			<!-- Offers column -->
-			<div class="col-sm-4">
-				<h4 class="footer-title">Our offers</h4>
-				<div class="line-dec"></div>
-				<ul>
-					<li><a href="#">New photos</a></li>
-					<li><a href="#">Top sellers</a></li>
-					<li><a href="#">Discount photos</a></li>
-				</ul>
-			</div>
-
-			<!-- Account column -->
-			<div class="col-sm-4">
-				<h4 class="footer-title">Your account</h4>
-				<div class="line-dec"></div>
-				<ul>
-					<li><a href="account.html">Your profile</a></li>
-					<li><a href="#">Personal information</a></li>
-					<li><a href="#">Shopping history</a></li>
-				</ul>
-			</div>
 
 			<!-- Copyright -->
 			<p> {{ $v['copyright']}}</p>

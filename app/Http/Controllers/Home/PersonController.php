@@ -22,7 +22,6 @@ class PersonController extends Controller
          $user =session('username');
         // 获取用户的数据
         $all =User::where('username','=',$user)->first();
-        dump($all);
         // 获取用户个人信息
         $person =$all->userperson;
     
@@ -119,7 +118,7 @@ class PersonController extends Controller
      */
     public function edit($id)
     {
-        dump(session('username'));
+        
     }
 
     /**
