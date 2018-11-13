@@ -152,13 +152,14 @@
 				<!-- 图片框架 -->
 				<div id="recent-photos">
 					<!-- 图片展示 -->
-					<div class="item" id="photo_8">
-						<!-- Price ribbon -->
-						<div class="ribbon"><span>19$</span></div>
-					</div>
-					@foreach($rotation as $k=>$v)
 					<div class="item">
-						<!-- Price ribbon -->
+						<!-- 图片地址 -->
+						<img src="/h/images/tip.jpeg.jpg">
+						<div class="ribbon"><span>你好</span></div>
+					</div>
+					@foreach($album as $k=>$v)
+					<div class="item">
+						<!-- 图片地址 -->
 						<img src="{{ $v['image'] }}" style="width:279px;height:180px;">
 						<div class="ribbon"><span>{{$v['describe']}}</span></div>
 					</div>
@@ -181,7 +182,7 @@
 			<!-- 文章图片显示 -->
 			<div class="media-left">
 				<a href="#">
-					<img class="media-object photo-list-image" alt="List photo" src="/h/images/photos/1.jpg">
+					<img class="media-object photo-list-image" alt="List photo" src="{{$v['image']}}">
 				</a>
 			</div>
 			<!-- 文章内容区 -->
@@ -250,13 +251,6 @@
 					@endforeach
 				</ul>
 			</div>
-
-			<!-- 版权信息 -->
-			<p>Copyright &copy; 2017.Company name All rights reserved.More Templates 
-				<a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a>
-				 - Collect from 
-				 <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a>
-			</p>
 		</div>
 	</div>
 </div>

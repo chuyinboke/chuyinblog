@@ -1,21 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Home;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\User;
-use App\Model\Notice;
-use App\Model\Category;
-use App\Model\rotation;
-use App\Model\links;
-use App\Model\Article;
-use App\Model\album;
-use DB;
 
-class IndexController extends Controller
+class commentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,32 +16,9 @@ class IndexController extends Controller
      */
     public function index()
     {
-        // 公告表
-        $notice =Notice::all();
-         //分类表 父级
-        $category =Category::all();
-        //分类表 子级
-        $categorys=DB::select("select * from category where pid > 0");
-       //轮播图接受数据库数据
-       $rotation = rotation::all();
-       //友情链接接受数据库数据
-       $links = links::all();
-       //文章显示 接收数据库 
-       $article = Article::all();
-       // dump($article);
-       $album = album::all();
-      
+        //
+    }
 
-        
-        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys,'rotation'=>$rotation,'links'=>$links,'article'=>$article,'album'=>$album]);
-    }
-    /**
-     *  网站维护页面
-     */
-    public function modify()
-    {
-       return view('Home.Index.modify');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -58,7 +27,6 @@ class IndexController extends Controller
     public function create()
     {
         //
-       
     }
 
     /**

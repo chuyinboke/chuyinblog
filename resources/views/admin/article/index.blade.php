@@ -30,6 +30,7 @@
                     <th>文章标题</th>
                     <th>文章作者</th>
                     <th>文章来源</th>
+                    <th>文章图片</th>
                     <th>文章分类</th>
                     <th>添加时间</th>
                     <th>修改时间</th>
@@ -43,6 +44,7 @@
                     <td>{{ $v['id'] }}</td>
                     <td>{{ $v['title'] }}</td>
                     <td>{{ $v['editrs'] }}</td>
+                    <td><img src="{{ $v['image'] }}" style="width:100px;height:60px"></td>
                     <td>{{ $v['source'] }}</td>
                     <td> 
                         @foreach($cate as $key=>$value)

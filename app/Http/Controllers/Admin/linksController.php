@@ -50,6 +50,18 @@ class linksController extends Controller
      */
     public function store(Request $request)
     {
+        //验证数据
+         $this->validate($request,[
+            'title' => 'required|regex:/[^a-zA-Z0-9]/',
+            'url' =>'required',
+            'status'=>'required'
+
+        ],[ 
+            'title.required' => '链接名字不能为空',
+            'title.regex'=>'链接名字必须是中文',
+            'url.required'=>'链接地址不能为空',
+            'status.required'=>'链接状态不能为空'
+        ]);
         
         //判断是否有文件上传
         if($request-> hasFile('pic')){

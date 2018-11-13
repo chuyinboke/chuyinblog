@@ -1,32 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\rotation;
+use App\Model\blogger;
 
-class rotationController extends Controller
+class BloggerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        //获取数据
-            $date = $request->all();
-            $search =$request->input('search','');
-            $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
-        //接收数据 
-           $rotation =rotation::where('name','like','%'.$search.'%')->paginate($showcount);
-            
-        //加载模板
-        return view('/admin.rotation.index',['title'=>'轮播图列表','rotation'=>$rotation,'date'=>$date]);
-        
+        //加载数据库数据 
+        $blogger = blogger::all();
+        //
+        return view('admin.Blogger.index',['title'=>'博主简介','blogger'=>$blogger]);
     }
 
     /**
@@ -36,8 +30,8 @@ class rotationController extends Controller
      */
     public function create()
     {
-        //加载视图模板
-       return view('/admin.rotation.rotation',['title'=>'轮播图管理']);
+        //加载模板
+        return view('admin.Blogger.Blogger',['title'=>'关于博主']);
     }
 
     /**
@@ -48,18 +42,8 @@ class rotationController extends Controller
      */
     public function store(Request $request)
     {
-        //验证数据
-         $this->validate($request,[
-            'name' => 'required|regex:/[^a-zA-Z0-9]/',
-            'describe' =>'required',
-            'status'=>'required'
-
-        ],[ 
-            'name.required' => '图片名字不能为空',
-            'name.regex'=>'图片名字必须是中文',
-            'describe.required'=>'图片介绍不能为空',
-            'status.required'=>'图片状态不能为空'
-        ]);
+        //接收数据 廷加到数据库
+        // dump($request->all());
         //判断是否有文件上传
         if($request-> hasFile('image')){
             //接收数据
@@ -77,20 +61,20 @@ class rotationController extends Controller
         }else{
             dd('请选择要显示图片');
         }
-        $rotation = new rotation;
-        $rotation->name = $request->input('name');
-        $rotation->describe = $request->input('describe');
-        $rotation->image = $profile_path; 
-        $rotation->status = $request->input('status');
-
-        $request->hasFile('name','describe','status');
-        if($rotation->save()){
-            return redirect('/admin/rotation')->with('success','添加成功');
+        // dump($request->all());
+        $blogger = new blogger;
+        $blogger->name = $request->input('name');
+        $blogger->editrs = $request->input('editrs');
+        $blogger->image = $profile_path;
+        $blogger->status = $request->input('status');
+        $blogger->content = $request->input('content');
+        $request->hasFile('name','editrs','status','content');
+        if($blogger->save()){
+            return redirect('/admin/Blogger')->with('success','添加成功');
         }else{
             return back()->whit('error','添加失败');
         }
     }
-    
 
     /**
      * Display the specified resource.
@@ -112,9 +96,9 @@ class rotationController extends Controller
     public function edit($id)
     {
         //获取数据
-        $data = rotation::where('id','=',$id)->first();
+        $data = blogger::where('id',$id)->first();
         //加载模板
-        return view('admin.rotation.edit',['title'=>'轮播图修改','data'=>$data]);
+        return view('admin.Blogger.edit',['title'=>'博主修改','data'=>$data]);
     }
 
     /**
@@ -126,6 +110,7 @@ class rotationController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //接收数据 廷加到数据库
         //判断是否有文件上传
         if($request-> hasFile('image')){
             //接收数据
@@ -141,21 +126,20 @@ class rotationController extends Controller
             //拼接路径
             $profile_path = ltrim($dir_name.'/'.$file_name,'.');
         }else{
-            dd('请选择要修改显示图片');
+            dd('请选择要显示图片');
         }
-        //接收修改的一条数据
-        $rotation = rotation::where('id','=',$id)->first();
-        $rotation->name = $request->input('name');
-        $rotation->describe = $request->input('describe');
-        $rotation->image = $profile_path; 
-        $rotation->status = $request->input('status');
-        //判断数据
-        $request->flashOnly('title','url','pic','status');
-        //判断是否修改
-        if($rotation->save()){
-            return redirect('/admin/rotation')->with('success','修改成功');
+        // dump($request->all());
+        $blogger = blogger::where('id',$id)->first();
+        $blogger->name = $request->input('name');
+        $blogger->editrs = $request->input('editrs');
+        $blogger->image = $profile_path;
+        $blogger->status = $request->input('status');
+        $blogger->content = $request->input('content');
+        $request->hasFile('name','editrs','status','content');
+        if($blogger->save()){
+            return redirect('/admin/Blogger')->with('success','添加成功');
         }else{
-            return back()->whit('error','修改失败');
+            return back()->whit('error','添加失败');
         }
     }
 
@@ -167,12 +151,13 @@ class rotationController extends Controller
      */
     public function destroy($id)
     {
-        //获取数据 删除数据
-        $res = Links::destroy($id);
+        //删除操作
+          $res = blogger::destroy($id);
         if($res){
-            return redirect('/admin/rotation')->with('success','删除成功');
+            return redirect('admin/Blogger')->with('success','删除成功');
         }else{
-            return back()->whit('error','删除失败');
-        }
+            return  back()->with('error','删除失败');
+       }
+
     }
 }

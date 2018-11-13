@@ -74,6 +74,23 @@ class ArticleConteoller extends Controller
             'editrs.required'=> '作者不能为空',
             'content.required'=> '内容不能为空'
         ]);
+        //判断是否有文件上传
+        if($request-> hasFile('image')){
+            //接收数据
+            $profile = $request-> file('image');
+            //获取上传文件后缀名
+            $ext = $profile-> getClientOriginalExtension();
+            //给上传文件一个随机名
+            $file_name = str_random(20).time().'.'.$ext;
+            //把上传文件存储到指定路径
+            $dir_name = './lunbotu/'.date('Ymd',time());
+            //把这个文件保存到这个位置
+            $res = $profile-> move($dir_name,$file_name);
+            //拼接路径
+            $profile_path = ltrim($dir_name.'/'.$file_name,'.');
+        }else{
+            dd('请选择要显示图片');
+        }
         // 开启事务
         DB::beginTransaction();
         //接受数据
@@ -81,6 +98,7 @@ class ArticleConteoller extends Controller
         $article->title = $request-> input('title','');
         //tid 等分类写完在家
         $article->editrs = $request-> input('editrs','');
+        $article->image =   $profile_path;
         $article->source = $request-> input('source','');
         $article->fenlei = $request-> input('fenlei','');
         $article->content = $request-> input('content','');
@@ -143,6 +161,23 @@ class ArticleConteoller extends Controller
             'editrs.required'=> '作者不能为空',
             'content.required'=> '内容不能为空'
         ]);
+        //判断是否有文件上传
+        if($request-> hasFile('image')){
+            //接收数据
+            $profile = $request-> file('image');
+            //获取上传文件后缀名
+            $ext = $profile-> getClientOriginalExtension();
+            //给上传文件一个随机名
+            $file_name = str_random(20).time().'.'.$ext;
+            //把上传文件存储到指定路径
+            $dir_name = './lunbotu/'.date('Ymd',time());
+            //把这个文件保存到这个位置
+            $res = $profile-> move($dir_name,$file_name);
+            //拼接路径
+            $profile_path = ltrim($dir_name.'/'.$file_name,'.');
+        }else{
+            dd('请选择要显示图片');
+        }
         //获取数据  进行修改
         // 开启事务
         DB::beginTransaction();
@@ -151,6 +186,7 @@ class ArticleConteoller extends Controller
         $article->title = $request-> input('title','');
         //tid 等分类写完在家
         $article->editrs = $request-> input('editrs','');
+        $article->image = $profile_path;
         $article->source = $request-> input('source','');
         $article->fenlei = $request-> input('fenlei','');
         $article->content = $request-> input('content','');

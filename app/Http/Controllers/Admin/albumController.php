@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Model\rotation;
+use App\Model\album;
 
-class rotationController extends Controller
+class albumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,15 +18,14 @@ class rotationController extends Controller
     public function index(Request $request)
     {
         //获取数据
-            $date = $request->all();
-            $search =$request->input('search','');
-            $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
+        $date = $request->all();
+        $search =$request->input('search','');
+        $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
         //接收数据 
-           $rotation =rotation::where('name','like','%'.$search.'%')->paginate($showcount);
-            
+        $album =album::where('name','like','%'.$search.'%')->paginate($showcount);
+
         //加载模板
-        return view('/admin.rotation.index',['title'=>'轮播图列表','rotation'=>$rotation,'date'=>$date]);
-        
+        return view('/admin.album.index',['title'=>'图片列表','album'=>$album,'date'=>$date]);
     }
 
     /**
@@ -36,8 +35,8 @@ class rotationController extends Controller
      */
     public function create()
     {
-        //加载视图模板
-       return view('/admin.rotation.rotation',['title'=>'轮播图管理']);
+        //加载模板
+        return view('admin.album.album',['title'=>'添加图片']);
     }
 
     /**
@@ -60,7 +59,9 @@ class rotationController extends Controller
             'describe.required'=>'图片介绍不能为空',
             'status.required'=>'图片状态不能为空'
         ]);
-        //判断是否有文件上传
+        //接收数据
+        // dump($request->all());
+         //判断是否有文件上传
         if($request-> hasFile('image')){
             //接收数据
             $profile = $request-> file('image');
@@ -69,7 +70,7 @@ class rotationController extends Controller
             //给上传文件一个随机名
             $file_name = str_random(20).time().'.'.$ext;
             //把上传文件存储到指定路径
-            $dir_name = './lunbotu/'.date('Ymd',time());
+            $dir_name = './tupian/'.date('Ymd',time());
             //把这个文件保存到这个位置
             $res = $profile-> move($dir_name,$file_name);
             //拼接路径
@@ -77,20 +78,19 @@ class rotationController extends Controller
         }else{
             dd('请选择要显示图片');
         }
-        $rotation = new rotation;
-        $rotation->name = $request->input('name');
-        $rotation->describe = $request->input('describe');
-        $rotation->image = $profile_path; 
-        $rotation->status = $request->input('status');
+        $album = new album;
+        $album->name = $request->input('name');
+        $album->describe = $request->input('describe');
+        $album->image = $profile_path; 
+        $album->status = $request->input('status');
 
         $request->hasFile('name','describe','status');
-        if($rotation->save()){
-            return redirect('/admin/rotation')->with('success','添加成功');
+        if($album->save()){
+            return redirect('/admin/album')->with('success','添加成功');
         }else{
             return back()->whit('error','添加失败');
         }
     }
-    
 
     /**
      * Display the specified resource.
@@ -100,7 +100,15 @@ class rotationController extends Controller
      */
     public function show($id)
     {
-        //
+        //获取数据
+            $date = $request->all();
+            $search =$request->input('search','');
+            $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
+        //接收数据 
+           $album =album::where('name','like','%'.$search.'%')->paginate($showcount);
+            
+        //加载模板
+        return view('/admin.album.index',['title'=>'图片列表','album'=>$album,'date'=>$date]);
     }
 
     /**
@@ -111,10 +119,10 @@ class rotationController extends Controller
      */
     public function edit($id)
     {
-        //获取数据
-        $data = rotation::where('id','=',$id)->first();
+     //获取数据
+        $data = album::where('id','=',$id)->first();
         //加载模板
-        return view('admin.rotation.edit',['title'=>'轮播图修改','data'=>$data]);
+        return view('admin.album.edit',['title'=>'图片修改','data'=>$data]);
     }
 
     /**
@@ -126,7 +134,19 @@ class rotationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //判断是否有文件上传
+        //验证数据
+         $this->validate($request,[
+            'name' => 'required|regex:/[^a-zA-Z0-9]/',
+            'describe' =>'required',
+            'status'=>'required'
+
+        ],[ 
+            'name.required' => '图片名字不能为空',
+            'name.regex'=>'图片名字必须是中文',
+            'describe.required'=>'图片介绍不能为空',
+            'status.required'=>'图片状态不能为空'
+        ]);
+        // //判断是否有文件上传
         if($request-> hasFile('image')){
             //接收数据
             $profile = $request-> file('image');
@@ -143,19 +163,17 @@ class rotationController extends Controller
         }else{
             dd('请选择要修改显示图片');
         }
-        //接收修改的一条数据
-        $rotation = rotation::where('id','=',$id)->first();
-        $rotation->name = $request->input('name');
-        $rotation->describe = $request->input('describe');
-        $rotation->image = $profile_path; 
-        $rotation->status = $request->input('status');
-        //判断数据
-        $request->flashOnly('title','url','pic','status');
-        //判断是否修改
-        if($rotation->save()){
-            return redirect('/admin/rotation')->with('success','修改成功');
+        $album = album::where('id','=',$id)->first();
+        $album->name = $request->input('name');
+        $album->describe = $request->input('describe');
+        $album->image = $profile_path; 
+        $album->status = $request->input('status');
+
+        $request->hasFile('name','describe','status');
+        if($album->save()){
+            return redirect('/admin/album')->with('success','添加成功');
         }else{
-            return back()->whit('error','修改失败');
+            return back()->whit('error','添加失败');
         }
     }
 
@@ -168,9 +186,9 @@ class rotationController extends Controller
     public function destroy($id)
     {
         //获取数据 删除数据
-        $res = Links::destroy($id);
+        $res = album::destroy($id);
         if($res){
-            return redirect('/admin/rotation')->with('success','删除成功');
+            return redirect('/admin/album')->with('success','删除成功');
         }else{
             return back()->whit('error','删除失败');
         }

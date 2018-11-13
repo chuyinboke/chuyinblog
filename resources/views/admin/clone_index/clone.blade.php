@@ -321,12 +321,22 @@
                         </ul>
                     </li>
                 </ul>
+            <!-- 相册管理 -->
+                <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>图片管理</a>
+                        <ul>
+                            <li><a href="/admin/album/create">添加图片</a></li>
+                            <li><a href="/admin/album">图片列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
             <!-- 评论管理 -->
                 <ul>
                     <li>
                         <a href="/a/#"><i class="icon-newspaper"></i>评论管理</a>
                         <ul>
-                            <li><a href="">文章评论列表</a></li>
+                            <li><a href="/admin/comment">文章评论列表</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -337,6 +347,16 @@
                         <ul>
                             <li><a href="/recycle">用户回收列表</a></li>
                             <li><a href="/recyclewz">文章回收列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            <!-- 关于博主 -->
+                   <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>关于博主</a>
+                        <ul>
+                            <li><a href="/admin/Blogger/create ">添加博主介绍</a></li>
+                            <li><a href="/admin/Blogger">后台博主简介</a></li>
                         </ul>
                     </li>
                 </ul>
