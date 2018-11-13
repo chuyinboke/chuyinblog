@@ -81,10 +81,12 @@ Route::resource('/admin/links','Admin\linksController');
 Route::resource('/admin/rotation','Admin\rotationController');
 //前台申请友情链接路由
 Route::resource('/admin/homelinks','Admin\homelinksController');
-
-
-
-
+//相册的路由
+Route::resource('/admin/album','Admin\albumController');
+//评论管理的路由
+Route::resource('/admin/comment','Admin\commentController');
+//博主简介的路由
+Route::resource('/admin/Blogger','Admin\BloggerController');
 
 
 

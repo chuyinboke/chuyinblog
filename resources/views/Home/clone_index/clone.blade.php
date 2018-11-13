@@ -81,24 +81,25 @@ $config =Config::all();
 
 
   <!-- 读取错误信息 -->
-                 @if(session('success'))
-                    <div class=''>
-                        {{ session('success')}}
-                    </div>
-                 @endif
-                 <!-- 错误提示 -->
-                  
-                  @if(session('error'))
-                    <div class=''>
-                        {{ session('error')}}
-                    </div>
-                 @endif
+	 @if(session('success'))
+	    <div class=''>
+	        {{ session('success')}}
+	    </div>
+	 @endif
+	 <!-- 错误提示 -->
+	  
+	  @if(session('error'))
+	    <div class=''>
+	        {{ session('error')}}
+	    </div>
+	 @endif
 @section('content') 
 
 @show
 <!-- 尾部信息 -->
-
-
+<div class="container">
+	<div id="footer">
+		<div class="row">
 			<!-- Copyright -->
 			<p> {{ $v['copyright']}}</p>
 		</div>

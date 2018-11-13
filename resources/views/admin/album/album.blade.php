@@ -10,41 +10,41 @@
         </ul>
     </div>
     @endif
-<!-- 添加链接 -->
+<!-- 添加页面 -->
 <div class="mws-panel grid_8">
 	<div class="mws-panel-header">
 		<span>{{ $title or '' }}</span>
 	</div>
 	<div class="mws-panel-body no-padding">
-     	<form class="mws-form" action="/admin/links" method="post" enctype="multipart/form-data" class="banner-upload">
+     	<form class="mws-form" action="/admin/album" method="post" enctype="multipart/form-data" class="banner-upload">
      		{{ csrf_field() }}
                <div class="mws-form-inline">
-                    <div class="mws-form-row">
-                         <label class="mws-form-label">网站名称</label>
-                         <div class="mws-form-item">
-                              <input type="text" class="small" name="title">
-                         </div>
-                    </div>
-                </div> 
-               <div class="mws-form-inline">
                      <div class="mws-form-row">
-                         <label class="mws-form-label">网站地址</label>
+                         <label class="mws-form-label">图片名字</label>
                          <div class="mws-form-item">
-                              <input type="text" class="small" name="url">
+                              <input type="text" class="small" name="name">
                          </div>
                     </div>
-               </div>    
+               </div>
+                <div class="mws-form-inline">
+                     <div class="mws-form-row">
+                         <label class="mws-form-label">图片描述</label>
+                         <div class="mws-form-item">
+                              <input type="text" class="small" name="describe">
+                         </div>
+                    </div>
+               </div>     
                <div class="mws-form-inline">
      				<div class="mws-form-row">
-     					<label class="mws-form-label">网站LOGO</label>
+     					<label class="mws-form-label">添加图片</label>
      					<div class="mws-form-item">
-     						<input type="file" class="small" name="pic">
+     						<input type="file" class="small" name="image">
      					</div>
      				</div>
                </div>
                <div class="mws-form-inline">
                    <div class="mws-form-row">
-                        <label class="mws-form-label">链接状态</label>
+                        <label class="mws-form-label">相册状态</label>
                         <div class="mws-form-item">
                             <input type="radio" value="1" name="status">启用
                             &nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
@@ -58,5 +58,9 @@
      			</div>
      	</form>
      </div> 
-</div>
+	
+
+
+
+
 @endsection
