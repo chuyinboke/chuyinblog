@@ -9,9 +9,10 @@ use App\Http\Controllers\Controller;
 use App\Model\Article;
 use App\Model\Category;
 use App\Http\Requests\ArticleStoreRequest;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
 class ArticleConteoller extends Controller
-{
+{   
 
     public static function getCates()
     {

@@ -15,4 +15,9 @@ class User extends Model
      {
      	return $this->hasOne('App\Model\Person','uid');
      }
+     // 用户对文章  一对一
+     public function userarticle()
+     {
+     	return $this->hasOne('App\Model\Article','tid');
+     }
 }

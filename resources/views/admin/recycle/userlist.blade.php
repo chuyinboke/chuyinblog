@@ -1,6 +1,6 @@
 @extends('admin.clone_index.clone')
 @section('content')
-	<div class="mws-panel grid_8">
+<div class="mws-panel grid_8">
                 <div class="mws-panel-header">
                     <span><i class="icon-table"></i> 用户回收列表</span>
                 </div>
@@ -52,12 +52,7 @@
                               
                                 <td> 
                                    <a href="/restore/{{$v['id']}}/edit" class='btn btn-info'>恢复</a>
-                                  <form  style="display:inline-block" action='/restore/{{ $v["id"]}}' method='post'>
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <input type="submit" value="删除" class='btn btn-danger'>
-                                        
-                                    </form>
+                                    <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除</button>
                                 </td>
                             </tr>
                               @endforeach
@@ -74,5 +69,27 @@
                 </div>
                 
                 </div>
-            </div>
+        <script type="text/javascript">
+            function del(obj,id)
+            {
+               $.ajax({
+                    url : '/recycle/destory',
+                    type : 'get',
+                    data : {'id' : id},
+                    success : function(msg){
+                        if (msg == 'success') {
+                           
+                            $(obj).parent().parent().remove();
+                            alert('删除成功');
+                        }else{
+                            alert('删除失败');
+                        }
+                    },
+                    dataType : 'html',
+                    async: false
+
+               });
+            }
+      </script>
+</div>
 @endsection

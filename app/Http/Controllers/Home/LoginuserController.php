@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use DB;
 use App\Model\Person;
 use App\Model\User;
+use Hash;
 
 class LoginuserController extends Controller
 {
@@ -53,24 +54,30 @@ class LoginuserController extends Controller
             'repassword.same' => '两次密码不一致',
             'repassword.required' => '确认密码不许为空',
         ]);
-        // 登陆获取的用户名和密码
-         $username =$request->input('username');
+         $user =$request->input('username');
+       
         $pw =$request->input('password');
-        // 检查数据库中是否存在
-        session(['username'=>$username]);
-        $res =DB::table('user')
-            ->where('username','=',$username)
-            ->where('password','=',$pw)
-            ->first();
-       if($res){
-            echo "<script>alert('登陆成功');location.href='/home'</script>";
-           
-       }else{
-        
-           echo "<script>alert('登录失败');location.href='/loginuser/create'</script>";
-       }
+        // 查看用户是否存在数据表内
+        $users =User::where('username',$user)->first();
+        // 判断用户是否存在
+        if(!$users){
 
+               echo "<script>alert('用户不存在');location.href='/loginuser/create'</script>";
+        }
+        // 判断密码
+        if(!Hash::check($pw, $users['password'])){
+               echo "<script>alert('密码错误');location.href='/loginuser/create'</script>";
 
+        }
+        // 判断是否有权限''
+        if($users['status'] == 1){
+            // 写入session 
+            session(['username'=>$user]);
+             echo "<script>alert('登陆成功');location.href='/home'</script>";
+        }else{
+               echo "<script>alert('用户没有权限');location.href='/loginuser/create'</script>";
+
+        }
     }
 
     /**

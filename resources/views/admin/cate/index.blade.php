@@ -31,8 +31,6 @@
                 <tr >
                 	<th>ID</th>
                 	<th>分类名称</th>
-                	<!-- <th>属性分类ID</th>
-                    <th>分类路径</th> -->
                 	<th>添加时间</th>
                 	<th>修改时间</th>
                     <th>分类状态</th>
@@ -45,8 +43,6 @@
         	<tr class="odd">
                     <td class=" ">{{ $v['id']}}</td>
                     <td class=" ">{{ $v['name']}}</td>
-                   <!--  <td class=" ">{{ $v['pid'] }}</td>
-                    <td>{{ $v['path']}}</td> -->
                     <td class=" ">{{ $v['created_at']}}</td>
                     <td class=" ">{{ $v['updated_at']}}</td>
                     <td>
@@ -58,12 +54,13 @@
                     </td>
                     <td class=" ">
                     	<a href="/admin/cate/{{$v['id']}}/edit" class='btn btn-warning'>修改</a>
-                    	 <form  style="display:inline-block" action='/admin/cate/{{ $v["id"]}}' method='post'>
+                    	<!--  <form  style="display:inline-block" action='/admin/cate/{{ $v["id"]}}' method='post'>
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <input type="submit" value="删除" class='btn btn-danger'>
                         
-                    </form>
+                    </form> -->
+                        <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除</button>
                     </td>
               </tr>
               @endforeach
@@ -77,5 +74,28 @@
         	</div> 
         </div>
     </div>
+      <script type="text/javascript">
+            function del(obj,id)
+            {
+               $.ajax({
+                    url : '/admin/cate/destory',
+                    type : 'get',
+                    data : {'id' : id},
+                    success : function(msg){
+                        if (msg == 1) {
+                            $(obj).parent().parent().remove();
+                            alert('删除成功');
+                       
+                        }else{
+                            alert('删除失败');
+                        }
+
+                    },
+                    dataType : 'html',
+                    async: false
+
+               });
+            }
+            </script>
 </div>
 @endsection

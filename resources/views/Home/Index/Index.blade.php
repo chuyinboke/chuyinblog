@@ -200,8 +200,8 @@
 					</div>
 					<!-- 文章按钮 -->
 					<div class="col-sm-4">
-						<a class="btn btn-block btn-success" href="#">查看详情</a>
-						<a class="btn btn-block btn-primary" href="picture.html">发表评论</a>
+						<a class="btn btn-block btn-success" href="/cate/shows/{{ $v['id']}}">查看详情</a>
+						<a class="btn btn-block btn-primary" href="/cate/shows/{{ $v['id']}}">发表评论</a>
 					</div>
 				</div>
 			</div>

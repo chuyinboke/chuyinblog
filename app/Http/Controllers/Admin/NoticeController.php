@@ -128,14 +128,16 @@ class NoticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+        // 获取从视图传过来的值ajax
+         $a = $request->all();
+         $id = $a['id'];
          $res =Notice::destroy($id);
       if($res){
-      
-            return redirect('admin/notice')->with('success','删除成功');
+             return 'success';
        }else{
-            return  back()->with('error','删除失败');
+            return 'error';
        }
     }
    

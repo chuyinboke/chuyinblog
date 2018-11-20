@@ -55,13 +55,7 @@
                                     </td>
                                     <td>
                                         <a href="/admin/notice/{{ $v['id']}}/edit" class='btn btn-warning'>修改</a>
-                                           
-                                        <form style='display:inline-block'  method='post' id='form2'  action="/admin/notice/{{$v['id']}}">
-                                            {{ csrf_field()}}
-                                            {{ method_field('DELETE')}}
-                                            <input type="submit" value='删除' class='btn btn-danger' onclick="return confirm('确定要删除吗？')">
-                                            
-                                        </form>
+                                        <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除</button>
 
                                     </td>
                                 </tr>
@@ -79,6 +73,28 @@
                     </div>
                 </div>
          </div>
-<script type="text/javascript">
-</script>
+          <script type="text/javascript">
+            function del(obj,id)
+            {
+               
+               $.ajax({
+                    url : '/admin/notice/destory',
+                    type : 'get',
+                    data : {'id' : id},
+                    success : function(msg){
+                        if (msg == 'success') {
+                           
+                            $(obj).parent().parent().remove();
+                            alert('删除成功');
+                        }else{
+                            alert('删除失败');
+                        }
+
+                    },
+                    dataType : 'html',
+                    async: false
+
+               });
+            }
+            </script>
 @endsection

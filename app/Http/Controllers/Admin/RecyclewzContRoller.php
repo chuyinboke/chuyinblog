@@ -7,6 +7,7 @@ use App\Model\Article;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 class RecyclewzContRoller extends Controller
 {
@@ -24,8 +25,7 @@ class RecyclewzContRoller extends Controller
         $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
         $search =$request->input('search');
           // 获取被删除的数据
-         $article =Article::onlyTrashed()->where('title','like','%'.$search.'%')->paginate($showcount);
-
+         $article =Article::onlyTrashed()->where('title','like','%'.$search.'%')->paginate($showcount);  
     return view('admin.recycle.articlelist',['article'=>$article,'title'=>'文章回收站','date'=>$date]);
     }
 
@@ -95,13 +95,17 @@ class RecyclewzContRoller extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+           // ajax删除
+         $a = $request->all();
+         $id = $a['id'];
+         // 获取被软删除的数据
         $article =Article::withTrashed()->where('id','=', $id);      
       if($article->forceDelete()){
-             return redirect('/recyclewz')->with('success','删除成功');
+            return 'success';
          }else{
-             return redirect('/recyclewz')->with('error','删除失败');
+            return 'error';
          }
      
     }

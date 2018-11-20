@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Category;
 use DB;
+use App\Model\Article;
 
 class CategoryController extends Controller
 {
@@ -195,22 +196,29 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-    
+         $a = $request->all();
+         $id = $a['id'];
+      
        // 查询子类
        $child_date = Category::where('pid',$id)->first();
        if($child_date){
         return back()->with('error','当前分类有子分类，不允许删除');
         exit;
        }
+       // 查询子分类下是否有文章
+       $arcitle =Article::where('fenlei',$id)->first();
+        if($arcitle){
+        return back()->with('error','当前子分类下有文章，不允许删除');
+        exit;
+       }
        // 执行删除
         $res =Category::destroy($id);
      if($res){
-      
-           return redirect('admin/cate')->with('success','删除成功');
+             return '1'; 
        }else{
-            return  back()->with('error','删除失败');
+             return '2';
        }
     }
 }

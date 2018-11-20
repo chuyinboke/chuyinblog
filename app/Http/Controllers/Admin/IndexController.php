@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\User;
+use Hash;
 
 class IndexController extends Controller
 {
@@ -33,14 +34,28 @@ class IndexController extends Controller
     public function dologin(Request $request)
     {
         $user =$request->input('username');
-        session(['admin'=>$user]);
+       
         $pw =$request->input('password');
-        $res =User::where('username','=',$user)->first();
-        $res2 =User::where('password','=',$pw)->first();
-        if($res && $res2 && $res['status'] == 0){
+        // 查看用户是否存在数据表内
+        $users =User::where('username',$user)->first();
+        // 判断用户是否存在
+        if(!$users){
+
+               echo "<script>alert('用户不存在');location.href='/admin'</script>";
+        }
+        // 判断密码
+        if(!Hash::check($pw, $users['password'])){
+               echo "<script>alert('密码错误');location.href='/admin'</script>";
+
+        }
+        // 判断是否有权限''
+        if($users['status'] == 0){
+            // 写入session 
+            session(['admin'=>$user]);
              echo "<script>alert('登陆成功');location.href='/admin/index'</script>";
         }else{
-               echo "<script>alert('登录失败，请重新登陆');location.href='/admin'</script>";
+               echo "<script>alert('用户没有权限');location.href='/admin'</script>";
+
         }
     }
     /**

@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UsersStoreRequest;
 use App\Model\User;
 use App\Model\Person;
+use Hash;
 
 
 class LoginController extends Controller
@@ -65,7 +66,7 @@ class LoginController extends Controller
          // 注册用户
       $user =new User;
       $user->username =$request->input('username');
-      $user->password =$request->input('password');
+      $user->password =Hash::make($request->input('password'));
       $user->email =$request->input('email');
       $user->phone =$request->input('phone');
       $user->created_at =time();

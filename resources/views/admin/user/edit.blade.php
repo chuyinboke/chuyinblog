@@ -56,8 +56,8 @@
                 <div class="mws-form-row">
                     <label class="mws-form-label">管理权限 <span class="required">*</span></label>
                      <select name='status'>
-                           		<option value='1' @if($date['status'] ==0) selected @endif >管理员  </option>
-                           		<option value='2' @if($date['status'] ==1) selected @endif>普通用户</option>
+                           		<option value='0' @if($date['status'] ==0) selected @endif >管理员  </option>
+                           		<option value='1' @if($date['status'] ==1) selected @endif>普通用户</option>
                       </select>
                     <div class="mws-form-item">
                        

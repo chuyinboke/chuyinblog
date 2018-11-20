@@ -43,7 +43,7 @@
                         
                                 @foreach($user as $k=>$v)
                             <tr class="odd">
-                                <td class="">{{ $v['id']}}</td>
+                                <td id="{{ $v['id']}}">{{ $v['id']}}</td>
                                 <td class="">{{ $v['username']}}</td>
                                 <td>{{ $v['phone']}}</td>
                                 <td>{{ $v['email']}}</td>
@@ -52,14 +52,8 @@
                                 <td>{{ $v['status'] == 1 ? '普通用户' : '管理员'}}</td>
                               
                                 <td> 
-                                     <a href="/admin/user/{{ $v['id']}}/edit" class='btn btn-warning'>修改</a>                        
-                                    <form  style="display:inline-block" action='/admin/user/{{ $v["id"]}}' method='post'>
-                                        {{ csrf_field() }}
-                                        {{ method_field('DELETE') }}
-                                        <input type="submit" value="删除" class='btn btn-danger'>
-                                        
-                                    </form>
-                                 
+                                     <a href="/admin/user/{{ $v['id']}}/edit" class='btn btn-warning'>修改</a>                 
+                                    <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除sss</button>
                                 </td>
                             </tr>
                               @endforeach
@@ -77,4 +71,30 @@
                 
                 </div>
             </div>
+            <script type="text/javascript">
+            function del(obj,id)
+            {
+               $.ajax({
+                    url : '/admin/user/destory',
+                    type : 'get',
+                    data : {'id' : id},
+                    success : function(msg){
+                        if (msg == 'success') {
+                           
+                            $(obj).parent().parent().remove();
+                            alert('删除成功');
+                          
+                           
+                       
+                        }else{
+                            alert('删除失败');
+                        }
+
+                    },
+                    dataType : 'html',
+                    async: false
+
+               });
+            }
+            </script>
 @endsection

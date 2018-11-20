@@ -123,7 +123,7 @@
 							</div>
 							
 							
-							<input type="submit" name="注册">
+							<input type="submit" name="注册" class="btn btn-info">
 						</form>
 					</div>
 

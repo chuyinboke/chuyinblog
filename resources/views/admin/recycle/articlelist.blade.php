@@ -47,11 +47,7 @@
                     <td>{{ $v['updated_at'] }}</td>
                     <td>
                     	<a href="/recyclewz/{{ $v['id'] }}/edit" class="btn btn-warning">恢复</a>
-                    	<form action="/recyclewz/{{ $v['id'] }}" method="post" style="display:inline-block"> 
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <input type="submit" value="删除" class='btn btn-danger'>
-                    	</form>
+                        <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除</button>
                     </td>
                 </tr>
             @endforeach    
@@ -65,5 +61,27 @@
             </div> 
         </div>  
     </div>
+      <script type="text/javascript">
+            function del(obj,id)
+            {
+               $.ajax({
+                    url : '/recyclewz/destory',
+                    type : 'get',
+                    data : {'id' : id},
+                    success : function(msg){
+                        if (msg == 'success') {
+                           
+                            $(obj).parent().parent().remove();
+                            alert('删除成功');
+                        }else{
+                            alert('删除失败');
+                        }
+                    },
+                    dataType : 'html',
+                    async: false
+
+               });
+            }
+            </script>
 </div>
 @endsection

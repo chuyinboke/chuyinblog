@@ -56,8 +56,8 @@
                 <div class="mws-form-row">
                     <label class="mws-form-label">管理权限 <span class="required">*</span></label>
                      <select name='status'>
-                           		<option value='1'>管理员</option>
-                           		<option value='2'>普通用户</option>
+                           		<option value='0'>管理员</option>
+                           		<option value='1'>普通用户</option>
                            </select>
                     <div class="mws-form-item">
                        

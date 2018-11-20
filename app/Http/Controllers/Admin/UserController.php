@@ -10,6 +10,8 @@ use App\Http\Requests\UsersStoreRequest;
 use App\Model\User;
 use Hash;
 use DB;
+use App\Model\Person;
+use App\Model\Article;
 
 class UserController extends Controller
 {
@@ -57,11 +59,15 @@ class UserController extends Controller
        $user->status =$request->input('status');
        $user->created_at =time();
        $user->updated_at =time();
-       $user->save();
+       $res =$user->save();
+         // 查询对应用户名的  id
+       $person =new Person;
+        // 用户的id  =  个人资料的 uid
+       $person->uid =$user['id'];
+       $res2 =$person->save();
 
 
-
-       if($user){
+       if($res && $res2){
         // 提交事务
             DB::commit();
             return redirect('admin/user')->with('success','添加成功');
@@ -134,14 +140,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy(Request $request)
+    {    
+        // ajax删除
+         $a = $request->all();
+         $id = $a['id'];
+
+    
         $res =User::destroy($id);
-      if($res){
-      
-            return redirect('admin/user')->with('success','删除成功');
+       // 删除个人信息
+        $res2 =Person::where('uid',$id)->delete();
+        // 查询是否有文章
+        $res3 =Article::where('tid',$id)->get();
+        // 有就删除
+        if($res3){
+           $res3 =Article::where('tid',$id)->delete();
+        } 
+      if($res && $res2){
+          return 'success';    
        }else{
-            return  back()->with('error','删除失败');
+          return 'error';
        }
 
     }

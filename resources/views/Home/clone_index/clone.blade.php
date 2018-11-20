@@ -1,7 +1,10 @@
-<?php  
+<?php 
+ //网站配置 
 use App\Model\Config;
+// 用户
+use App\Model\User;
 $config =Config::all();
-
+$user =User::where('username',session('username'))->first();
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,6 +29,11 @@ $config =Config::all();
 <link rel="stylesheet" type="text/css" href="/h/owl-carousel/owl.transitions.css">
 <link rel="stylesheet" type="text/css" href="/h/css/style.css">
 <script type="text/javascript" src="/a/bootstrap/js/jquery-1.8.3.min.js"></script>
+<link rel="stylesheet" href="/h/layer-v3.1.1/layer/mobile/need/layer.css">
+<link rel="stylesheet" href="/h/layui-v2.4.5/layui/css/layui.css">
+<script src="/h/layui-v2.4.5/layui/layui.all.js"></script>
+<script src="/h/layer-v3.1.1/layer/layer.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!--<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,400i,700,800" rel="stylesheet">--->
 
@@ -62,13 +70,10 @@ $config =Config::all();
 				<!-- Menu -->
 				<ul class="nav nav-pills">
 					<li role="presentation"><a href="/del">退出</a></li>
-					
 					@if(session('username'))
 					<li role="presentation"><a href="/person">个人中心</a></li>
 					<li role="presentation"><a href=""><b>用户名：</b> <span>{{session('username')}}</span></a></li>
-
 					@else
-
 					<li role="presentation"><a href="/loginuser/create"><b></b> <span>登录</span></a></li>
 					<li role="presentation"><a href="/login/create"><b>欢迎</b> <span>注册</span></a></li>
 					@endif
@@ -151,4 +156,5 @@ $config =Config::all();
 <script type="text/javascript" src="/h/js/main.js"></script>
 
 </body>
+	
 </html>
