@@ -54,6 +54,7 @@
 								<input type="file" class="small" id="lastname" name="pic">
 								<span id="repw"></span>
 							</div>
+							{{csrf_field()}}
 							<input type="submit" name="注册" class="btn btn-info">
 						</form>
 					</div>

@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\album;
 
-class albumController extends Controller
+class AlbumController extends Controller
 {
     /**
      * Display a listing of the resource.

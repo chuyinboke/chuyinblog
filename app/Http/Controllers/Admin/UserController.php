@@ -22,8 +22,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-         $date =$request->all();
-         $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
+        $date =$request->all();
+        $showcount =isset($date['showcount']) ? $date['showcount'] : 5;
         $search =$request->input('search');
         $user =User::where('username','like','%'.$search.'%')->paginate($showcount);
         return view('admin.user.index',['title'=>'用户列表','user'=>$user,'date'=>$date]);

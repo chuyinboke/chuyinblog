@@ -13,6 +13,7 @@ use App\Model\rotation;
 use App\Model\links;
 use App\Model\Article;
 use App\Model\album;
+use App\Model\blogger;
 use DB;
 
 class IndexController extends Controller
@@ -37,11 +38,14 @@ class IndexController extends Controller
        //文章显示 接收数据库 
        $article = Article::all();
        // dump($article);
+       //图片显示 接通数据库
        $album = album::all();
-      
+       //博主简介页面
+       $blogger= blogger::all();
+       // dump($blogger); 
 
         
-        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys,'rotation'=>$rotation,'links'=>$links,'article'=>$article,'album'=>$album]);
+        return view('Home.Index.Index',['notice'=>$notice,'category'=>$category,'categorys'=>$categorys,'rotation'=>$rotation,'links'=>$links,'article'=>$article,'album'=>$album,'blogger'=>$blogger]);
     }
     /**
      *  网站维护页面

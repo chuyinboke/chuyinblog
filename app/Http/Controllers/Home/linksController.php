@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\links;
 
-class linksController extends Controller
+class LinksController extends Controller
 {
     /**
      * Display a listing of the resource.

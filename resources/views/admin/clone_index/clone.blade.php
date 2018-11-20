@@ -340,6 +340,15 @@
                         </ul>
                     </li>
                 </ul>
+            <!-- 留言板 -->
+                 <ul>
+                    <li>
+                        <a href="/a/#"><i class="icon-newspaper"></i>留言板管理</a>
+                        <ul>
+                            <li><a href="/admin/Leaving">留言板列表</a></li>
+                        </ul>
+                    </li>
+                </ul>
             <!-- 回收站 -->
                 <ul>
                     <li>

@@ -54,20 +54,19 @@ class LoginuserController extends Controller
             'repassword.same' => '两次密码不一致',
             'repassword.required' => '确认密码不许为空',
         ]);
-         $user =$request->input('username');
-       
+        $user =$request->input('username');
         $pw =$request->input('password');
         // 查看用户是否存在数据表内
         $users =User::where('username',$user)->first();
         // 判断用户是否存在
         if(!$users){
-
-               echo "<script>alert('用户不存在');location.href='/loginuser/create'</script>";
+            echo "<script>alert('用户不存在');location.href='/loginuser/create'</script>";
+            exit;
         }
         // 判断密码
         if(!Hash::check($pw, $users['password'])){
-               echo "<script>alert('密码错误');location.href='/loginuser/create'</script>";
-
+           echo "<script>alert('密码错误');location.href='/loginuser/create'</script>";
+           exit;
         }
         // 判断是否有权限''
         if($users['status'] == 1){
@@ -75,7 +74,7 @@ class LoginuserController extends Controller
             session(['username'=>$user]);
              echo "<script>alert('登陆成功');location.href='/home'</script>";
         }else{
-               echo "<script>alert('用户没有权限');location.href='/loginuser/create'</script>";
+            echo "<script>alert('用户没有权限');location.href='/loginuser/create'</script>";
 
         }
     }

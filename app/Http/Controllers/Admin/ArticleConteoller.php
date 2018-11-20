@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\Article;
 use App\Model\Category;
+use App\Model\User;
 use App\Http\Requests\ArticleStoreRequest;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use DB;
@@ -66,13 +67,11 @@ class ArticleConteoller extends Controller
         //验证文章标题是否为空
         $this->validate($request,[
             'title' => 'required|unique:article|regex:/[^a-zA-Z0-9]/',
-            'editrs' => 'required',
             'content' => 'required'
         ],[ 
             'title.required'=> '标题不能为空',
             'title.unique'=> '标题不能重复',
             'title.regex'=> '标题不能是符号',
-            'editrs.required'=> '作者不能为空',
             'content.required'=> '内容不能为空'
         ]);
         //判断是否有文件上传
@@ -97,8 +96,14 @@ class ArticleConteoller extends Controller
         //接受数据
         $article = new Article;
         $article->title = $request-> input('title','');
-        //tid 等分类写完在家
-        $article->editrs = $request-> input('editrs','');
+        //获取当前用户 添加到数据库
+        $name = session('admin');
+        $article->editrs = $name;
+        //获取tid 添加到数据库
+        $user = User::where('username',$name)->first();
+        $uname = $user['id'];
+        $article->tid = $uname;
+        //获取数据 使用模型添加到数据库
         $article->image =   $profile_path;
         $article->source = $request-> input('source','');
         $article->fenlei = $request-> input('fenlei','');
@@ -159,7 +164,6 @@ class ArticleConteoller extends Controller
             'title.required'=> '标题不能为空',
             'title.unique'=> '标题不能重复',
             'title.regex'=> '标题不能是符号',
-            'editrs.required'=> '作者不能为空',
             'content.required'=> '内容不能为空'
         ]);
         //判断是否有文件上传
@@ -185,8 +189,8 @@ class ArticleConteoller extends Controller
         //接受数据
         $article = Article::where('id','=',$id)->first();
         $article->title = $request-> input('title','');
-        //tid 等分类写完在家
-        $article->editrs = $request-> input('editrs','');
+        $name = session('admin');
+        $article->editrs = $name;
         $article->image = $profile_path;
         $article->source = $request-> input('source','');
         $article->fenlei = $request-> input('fenlei','');

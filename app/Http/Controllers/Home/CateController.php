@@ -10,6 +10,7 @@ use DB;
 use App\Model\Article;
 use App\Model\Category;
 use App\Model\User;
+use App\Model\comment;
 
 class CateController extends Controller
 {
@@ -28,15 +29,17 @@ class CateController extends Controller
      * 文章详情表
      */
     public function shows($id)
-    {
+    {   
         // 帖子的内容
         $article =Article::where('id',$id)->get();
         $tid =$article[0]['tid'];
+        // dump($tid);
         // 用户的信息
         $user = User::where('id',$tid)->get();
-       return view('Home.Cate.shows',['article'=>$article,'user'=>$user]);
+        // dump($user);
+         //评论页面
+        $comment = comment::all();
+       return view('Home.Cate.shows',['user'=>$user,'article'=>$article,'comment'=>$comment]);
     }
-
-   
    
 }

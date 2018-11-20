@@ -21,6 +21,10 @@
                 <tr>
                     <th>ID</th>
                     <th>博主名字</th>
+                    <th>博主年龄</th>
+                    <th>博主性别</th>
+                    <th>博主身高</th>
+                    <th>博主擅长</th>
                   	<th>博主简介</th>
                   	<th>博主头像</th>
                   	<th>简介状态</th>
@@ -32,7 +36,11 @@
             	@foreach($blogger as $v)
             	<tr>
             		<td>{{$v['id']}}</td>
-            		<td>{{$v['name']}}</td>
+                <td>{{$v['name']}}</td>
+                <td>{{$v['age']}}</td>
+                <td>{{$v['sex']}}</td>
+                <td>{{$v['height']}}</td>
+            		<td>{{$v['Begoodat']}}</td>
             		<td>{{$v['editrs']}}</td>
             		<td><span class="thumbnail"><img src="{{$v['image']}}" style="width:150px;height:100px"></span></td>
             		<td> 

@@ -28,6 +28,7 @@ $user =User::where('username',session('username'))->first();
 <link rel="stylesheet" type="text/css" href="/h/owl-carousel/owl.theme.css">
 <link rel="stylesheet" type="text/css" href="/h/owl-carousel/owl.transitions.css">
 <link rel="stylesheet" type="text/css" href="/h/css/style.css">
+<link rel="stylesheet" type="text/css" href="/h/css/Leaving.css">
 <script type="text/javascript" src="/a/bootstrap/js/jquery-1.8.3.min.js"></script>
 <link rel="stylesheet" href="/h/layer-v3.1.1/layer/mobile/need/layer.css">
 <link rel="stylesheet" href="/h/layui-v2.4.5/layui/css/layui.css">
@@ -36,9 +37,7 @@ $user =User::where('username',session('username'))->first();
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <!--<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,400i,700,800" rel="stylesheet">--->
-
 </head>
-
 <body>
 
  
