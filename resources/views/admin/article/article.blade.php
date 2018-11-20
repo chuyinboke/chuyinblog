@@ -24,20 +24,15 @@
             					<input type="text" class="small" name="title">
             				</div>
             			</div>
+            			
             			<div class="mws-form-row">
-            				<label class="mws-form-label">文章作者</label>
-            				<div class="mws-form-item">
-            					<input type="text" class="small" name="editrs">
-            				</div>
-            			</div>
-            				<div class="mws-form-row">
             				<label class="mws-form-label">文章来源</label>
             				<div class="mws-form-item">
             					<input type="text" class="small" name="source">
             				</div>
             			</div>
                         <div class="mws-form-inline">
-                            <div class="mws-form-row">
+                         <div class="mws-form-row">
                              <label class="mws-form-label">文章图片</label>
                                 <div class="mws-form-item">
                                     <input type="file" class="small" name="image">

@@ -32,7 +32,7 @@
 							<!-- 文章图片显示 -->
 							<div class="media-left">
 								<a href="#">
-									<img class="media-object photo-list-image" alt="快来添加我" src="{{ $v['pic']}}">
+									<img class="media-object photo-list-image" alt="快来添加我" src="{{ $v['image']}}">
 								</a>
 							</div>
 							

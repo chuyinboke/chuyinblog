@@ -25,12 +25,11 @@ $config =Config::all();
 <link rel="stylesheet" type="text/css" href="/h/owl-carousel/owl.theme.css">
 <link rel="stylesheet" type="text/css" href="/h/owl-carousel/owl.transitions.css">
 <link rel="stylesheet" type="text/css" href="/h/css/style.css">
+<link rel="stylesheet" type="text/css" href="/h/css/Leaving.css">
 <script type="text/javascript" src="/a/bootstrap/js/jquery-1.8.3.min.js"></script>
 
 <!--<link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,300,400,400i,700,800" rel="stylesheet">--->
-
 </head>
-
 <body>
 
  

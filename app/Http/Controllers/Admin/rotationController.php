@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\rotation;
 
-class rotationController extends Controller
+class RotationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -168,7 +168,7 @@ class rotationController extends Controller
     public function destroy($id)
     {
         //获取数据 删除数据
-        $res = Links::destroy($id);
+        $res = rotation::destroy($id);
         if($res){
             return redirect('/admin/rotation')->with('success','删除成功');
         }else{

@@ -57,14 +57,13 @@ class LoginuserController extends Controller
          $username =$request->input('username');
         $pw =$request->input('password');
         // 检查数据库中是否存在
-        session(['username'=>$username]);
         $res =DB::table('user')
             ->where('username','=',$username)
             ->where('password','=',$pw)
             ->first();
        if($res){
             echo "<script>alert('登陆成功');location.href='/home'</script>";
-           
+           session(['username'=>$username]);
        }else{
         
            echo "<script>alert('登录失败');location.href='/loginuser/create'</script>";

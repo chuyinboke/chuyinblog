@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Model\links;
 use DB;
-class homelinksController extends Controller
+class HomelinksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -101,9 +101,9 @@ class homelinksController extends Controller
         //获取数据 删除数据
         $res = Links::destroy($id);
         if($res){
-            return redirect('/admin/links')->with('success','删除成功');
+            return redirect('/admin/links')->with('success','不在审核');
         }else{
-            return back()->whit('error','删除失败');
+            return back()->whit('error','不在审核失败');
         }
     }
 }

@@ -61,9 +61,13 @@ class BloggerController extends Controller
         }else{
             dd('请选择要显示图片');
         }
-        // dump($request->all());
+        // dd($request->all());
         $blogger = new blogger;
         $blogger->name = $request->input('name');
+        $blogger->sex = $request->input('sex');
+        $blogger->age = $request->input('age');
+        $blogger->height = $request->input('height');
+        $blogger->Begoodat = $request->input('Begoodat');
         $blogger->editrs = $request->input('editrs');
         $blogger->image = $profile_path;
         $blogger->status = $request->input('status');
@@ -131,15 +135,19 @@ class BloggerController extends Controller
         // dump($request->all());
         $blogger = blogger::where('id',$id)->first();
         $blogger->name = $request->input('name');
+        $blogger->sex = $request->input('sex');
+        $blogger->age = $request->input('age');
+        $blogger->height = $request->input('height');
+        $blogger->Begoodat = $request->input('Begoodat');
         $blogger->editrs = $request->input('editrs');
         $blogger->image = $profile_path;
         $blogger->status = $request->input('status');
         $blogger->content = $request->input('content');
         $request->hasFile('name','editrs','status','content');
         if($blogger->save()){
-            return redirect('/admin/Blogger')->with('success','添加成功');
+            return redirect('/admin/Blogger')->with('success','修改成功');
         }else{
-            return back()->whit('error','添加失败');
+            return back()->whit('error','修改失败');
         }
     }
 

@@ -25,6 +25,30 @@
             					<input type="text" class="small" name="name">
             				</div>
             			</div>
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">博主性别</label>
+                            <div class="mws-form-item">
+                                <input type="text" class="small" name="sex">
+                            </div>
+                        </div>
+                            <div class="mws-form-row">
+                            <label class="mws-form-label">博主年龄</label>
+                            <div class="mws-form-item">
+                                <input type="text" class="small" name="age">
+                            </div>
+                        </div>
+                            <div class="mws-form-row">
+                            <label class="mws-form-label">博主身高</label>
+                            <div class="mws-form-item">
+                                <input type="text" class="small" name="height">
+                            </div>
+                        </div>
+                            <div class="mws-form-row">
+                            <label class="mws-form-label">博主擅长</label>
+                            <div class="mws-form-item">
+                                <input type="text" class="small" name="Begoodat">
+                            </div>
+                        </div>
             			<div class="mws-form-row">
             				<label class="mws-form-label">博主简介</label>
             				<div class="mws-form-item">
@@ -38,26 +62,25 @@
                                     <input type="file" class="small" name="image">
                                 </div>
                             </div>
+                        </div>  
+                        <div class="mws-form-row">
+                            <label class="mws-form-label">博主经历</label>
+                            <div class="mws-form-item">
+                                 <textarea  type="text/plain" class="small" name="content">
+                                
+                                </textarea>
+                            </div>
                         </div>
-            			<div class="mws-form-row">
-            				<label class="mws-form-label">简介开关</label>
-            				<div class="mws-form-item">
-            					<select class="small" name='status'>
+            	   <div class="mws-form-row">
+                            <label class="mws-form-label">简介开关</label>
+                            <div class="mws-form-item">
+                                <select class="small" name='status'>
                                     <option value='3'>----请选择-----</option>
-                                    <option value='0'>关闭</option>
                                     <option value='1'>开启</option>
-            					</select>
-            				</div>
-            			</div>
-            		<div class="mws-form-row">
-            			<label class="mws-form-label">博主留言</label>
-            			<div class="mws-form-item">
-                			 <!-- 加载编辑器的容器 -->
-						    <textarea  type="text/plain" class="small" name="content">
-						    	
-						    </textarea>
-                    	</div>
-            		</div>
+                                    <option value='0'>关闭</option>
+                                </select>
+                            </div>
+                        </div>
             </div>
         <div class="mws-button-row">
             <input type="submit" value="提交" class="btn btn-danger">

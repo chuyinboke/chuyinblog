@@ -73,21 +73,22 @@ Route::resource('/recyclewz','Admin\RecyclewzContRoller');
 
 
 
-//文章的路由
+//后台文章的路由
 Route::resource('/admin/article','Admin\ArticleConteoller');
-//友情链接的路由
-Route::resource('/admin/links','Admin\linksController');
-//轮播图的路由
-Route::resource('/admin/rotation','Admin\rotationController');
+//后台友情链接的路由
+Route::resource('/admin/links','Admin\LinksController');
+//后台轮播图的路由
+Route::resource('/admin/rotation','Admin\RotationController');
 //前台申请友情链接路由
-Route::resource('/admin/homelinks','Admin\homelinksController');
-//相册的路由
-Route::resource('/admin/album','Admin\albumController');
-//评论管理的路由
-Route::resource('/admin/comment','Admin\commentController');
-//博主简介的路由
+Route::resource('/admin/homelinks','Admin\HomelinksController');
+//后台相册的路由
+Route::resource('/admin/album','Admin\AlbumController');
+//后台评论管理的路由
+Route::resource('/admin/comment','Admin\CommentController');
+//后台博主简介的路由
 Route::resource('/admin/Blogger','Admin\BloggerController');
-
+//后台留言板的路由
+Route::resource('/admin/Leaving','Admin\LeavingController');
 
 
 
@@ -147,7 +148,13 @@ Route::resource('/cate','Home\CateController');
 Route::get('/cate/shows/{id}','Home\CateController@shows');
 // 发表帖子路由
 Route::resource('/publish','Home\PublishController');
-
+//前台路由
+//前台添加友情链接路由啊
+Route::resource('/links','Home\LinksController');
+//前台的评论列表
+Route::resource('/comment','Home\commentController');
+//留言板的路由
+Route::resource('/Leaving','Home\LeavingController');
 }else{
 
 	// 网站维护状态
@@ -155,6 +162,9 @@ Route::resource('/publish','Home\PublishController');
 }
 
 
+//不必登陆的
+//前台博主简介的路由
+Route::resource('/Blogger','Home\BloggerController');
 
 
 
@@ -167,9 +177,6 @@ Route::resource('/publish','Home\PublishController');
 
 
 
-// 前台路由
-//前台添加友情链接路由啊
-Route::resource('/links','Home\linksController');
 
 
 

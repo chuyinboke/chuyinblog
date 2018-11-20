@@ -38,27 +38,23 @@
             </thead>
             <tbody>
                 @foreach($data as $k=>$v)
-                <tr>
-                    <td>{{ $v['id'] }}</td>
-                    <td>{{ $v['title'] }}</td>
-                    <td>{{ $v['url'] }}</td>
-                    <td><img src="{{ $v['pic'] }}" style="width:100px;height:30px"></td>
-                     <td>
-                        @if($v['status'] == 1)
-                        <button style='color:yellow;background:black'>开启</button>
-                        @else
-                        <button style='color:red;background:black'>关闭</button>
-                        @endif
-                    </td>
-                    <td>
-                        <a href="/admin/links/{{$v['id']}}/edit" class="btn btn-warning">修改</a>
-                        <form action="/admin/links/{{$v['id']}}" method="post" style="display:inline-block">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                           <input type="submit" value="删除" class="btn btn-danger"> 
-                        </form>
-                    </td>
-                </tr>
+                @if($v['status'] == 1)
+                    <tr>
+                        <td>{{ $v['id'] }}</td>
+                        <td>{{ $v['title'] }}</td>
+                        <td>{{ $v['url'] }}</td>
+                        <td><img src="{{ $v['pic'] }}" style="width:100px;height:30px"></td>
+                        <td><button style='color:yellow;background:black'>开启</button></td>
+                        <td>
+                            <a href="/admin/links/{{$v['id']}}/edit" class="btn btn-warning">修改</a>
+                            <form action="/admin/links/{{$v['id']}}" method="post" style="display:inline-block">
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
+                               <input type="submit" value="删除" class="btn btn-danger"> 
+                            </form>
+                        </td>
+                    </tr>
+                @endif    
                 @endforeach
             </tbody>
         </table>

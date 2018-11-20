@@ -93,9 +93,9 @@ class PublishController extends Controller
            $user =session('username');
            $tid =User::where('username',$user)->get();
           //判断是否有图片上传
-        if($request-> hasFile('pic')){
+        if($request-> hasFile('image')){
             //接收数据
-            $profile = $request-> file('pic');
+            $profile = $request-> file('image');
             //获取上传文件后缀名
             $ext = $profile-> getClientOriginalExtension();
             //给上传文件一个随机名
@@ -111,7 +111,7 @@ class PublishController extends Controller
         $article = new Article;
         $article->tid =$tid[0]['id'];
         $article->title =$request->input('title');
-        $article->pic =isset($profile_path) ? $profile_path : '';
+        $article->image =isset($profile_path) ? $profile_path : '';
         $article->source =$request->input('source');
         $article->editrs =$user;
         $article->fenlei =$id;

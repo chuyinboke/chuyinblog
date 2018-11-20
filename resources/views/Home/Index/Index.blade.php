@@ -14,9 +14,10 @@
 
 		<!-- 分类 -->
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-			@foreach($category as $v)
+			
 			<ul class="nav navbar-nav">
 				<!-- 导航栏 -->
+				@foreach($category as $v)
 				<li class="dropdown">
 					@if($v['pid'] == 0)
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -32,9 +33,13 @@
 							@endif
 						@endforeach
 					</ul>
+					
 				</li>
+				@endforeach
+				<li><a href="/Blogger">关于博主</a></li>
+				<li><a href="/Leaving">留言板</a></li>
 			</ul>
-			@endforeach
+			
 			
 		</div>
 	</div>
@@ -200,8 +205,8 @@
 					</div>
 					<!-- 文章按钮 -->
 					<div class="col-sm-4">
-						<a class="btn btn-block btn-success" href="#">查看详情</a>
-						<a class="btn btn-block btn-primary" href="picture.html">发表评论</a>
+						<a class="btn btn-block btn-success" href="/cate/shows/{{$v['id']}}">查看详情</a>
+						<a class="btn btn-block btn-primary" href="/cate/shows/{{$v['id']}}">发表评论</a>
 					</div>
 				</div>
 			</div>
@@ -213,28 +218,6 @@
 <div class="container">
 	<div id="footer">
 		<div class="row">
-			<!-- 尾部信息栏 1 -->
-			<div class="col-sm-4">
-				<h4 class="footer-title">版权</h4>
-				<div class="line-dec"></div>
-				<ul>
-					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#legalModal">Legal advice</a></li>
-					<li><a href="javascript:void(0)" data-toggle="modal" data-target="#termsModal">Terms and conditions</a></li>
-					<li><a href="about-us.html">About us</a></li>
-				</ul>
-			</div>
-
-			<!-- 尾部信息栏 2 -->
-			<div class="col-sm-4">
-				<h4 class="footer-title">尾部</h4>
-				<div class="line-dec"></div>
-				<ul>
-					<li><a href="#">New photos</a></li>
-					<li><a href="#">Top sellers</a></li>
-					<li><a href="#">Discount photos</a></li>
-				</ul>
-			</div>
-
 			<!-- 尾部信息栏 3 -->
 			<div class="col-sm-4">
 				<h4 class="footer-title">友情连接</h4>
