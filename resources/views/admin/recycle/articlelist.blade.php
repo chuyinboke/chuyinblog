@@ -54,7 +54,7 @@
             </tbody>
         </table>
             <div class="dataTables_info" id="DataTables_Table_1_info">
-
+                {{ date('Y年m月d日 H:i',time()) }}
             </div>
             <div id='page_page'>
                 {!! $article->appends($date)->render() !!}
