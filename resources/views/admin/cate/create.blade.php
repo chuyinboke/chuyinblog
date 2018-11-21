@@ -1,7 +1,16 @@
 @extends('admin.clone_index.clone')
 
 @section('content')
-	
+	<!-- 显示验证错误信息 -->
+    @if (count($errors) > 0)
+    <div class="mws-form-message error">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div> 
+    @endif
 	<div class="mws-panel grid_8">
     	<div class="mws-panel-header">
         	<span>{{ $title}}</span>

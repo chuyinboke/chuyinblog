@@ -11,7 +11,7 @@
 					<div class="col-md-3 col-sm-5">
 					@foreach($user as $k => $v)	
 						<div class="img-profile text-center">
-							<img src="/h/images/2.jpg" class="img-responsive" alt="John Doe">
+							<img src="{{ $v->userperson['pic']}}" class="img-responsive" alt="John Doe" id='img'>
 							<div class="profile-name">
 								
 							</div>
@@ -36,7 +36,7 @@
 							<li class="list-group-item"><b>个性签名：</b> {{ $v->userperson['qm']}}</li>
 
 						</ul>
-						<a href="#" class="btn btn-block btn-success">关注</a>
+	
 					@endforeach
 					</div>
 					
@@ -49,7 +49,7 @@
 							楼主：{{$v['username']}} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   发表时间：{{ $vv['created_at']}}
 							<hr>
 							<div class="grid-item">
-								<img src="{{ $vv['image']}}" class="img-responsive" alt="your-photo" ">
+								<img src="{{ $vv['image']}}" alt="your-photo" style="width:500px;height:300px">
 							</div>
 							{!! $vv['content'] !!}									
 						</div>
@@ -104,7 +104,8 @@
 <script type="text/javascript" src="/utf8-php/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
- var ue = UE.getEditor('container'); 
+ var ue = UE.getEditor('container');
+
  </script> 
 	
 @endsection
