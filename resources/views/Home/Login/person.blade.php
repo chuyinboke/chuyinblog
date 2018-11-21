@@ -61,13 +61,13 @@
 					</div>
 
 					<div class="col-md-3 col-sm-12">
-						<h4 class="title">热门博主推荐</h4>
+						<h4 class="title">博主推荐</h4>
 						<div class="line-dec"></div>
 						@foreach($hot as $k => $v)
 						<!-- photo list item -->
 						<div class="media photo-list">
 							<a href="/person/bloggercenter/{{ $v['id']}}">
-								<img src="/h/images/photos/1.jpg" class="img-responsive margin-bottom-20" alt="Last sale photo 1">
+								<img src="{{ $v->userperson['pic']}}" style="width:200px;height:100px" alt="Last sale photo 1">
 								<div class="media-body">
 								<div class="row">
 									<!-- Description column -->

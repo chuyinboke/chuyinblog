@@ -11,7 +11,7 @@
 					<div class="col-md-3 col-sm-5">
 					@foreach($user as $k => $v)	
 						<div class="img-profile text-center">
-							<img src="$v->userperson['pic']" class="img-responsive" alt="John Doe">
+							<img src="{{ $v->userperson['pic']}}" class="img-responsive" alt="John Doe" id='img'>
 							<div class="profile-name">
 								
 							</div>
@@ -48,7 +48,7 @@
 							楼主：{{$v['username']}} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;   发表时间：{{ $vv['created_at']}}
 							<hr>
 							<div class="grid-item">
-								<img src="{{ $vv['image']}}" alt="your-photo" style="width:500px;height:300px;" >
+								<img src="{{ $vv['image']}}" alt="your-photo" style="width:500px;height:300px">
 							</div>
 							{!! $vv['content'] !!}									
 						</div>
@@ -83,7 +83,6 @@
                           @elseif($vs['settop'] == 3)
                           <span style="float:right;"><img src="/h/images/7.jpg" style="width:30px;height:23px"></span>
                           @endif
-
                         </div>
                         <div class="dr"></div>
                     </ul>
@@ -111,6 +110,7 @@
 <script type="text/javascript" src="/utf8-php/ueditor.all.js"></script>
 <!-- 实例化编辑器 -->
 <script type="text/javascript">
- var ue = UE.getEditor('container'); 
+ var ue = UE.getEditor('container');
+
  </script> 
 @endsection

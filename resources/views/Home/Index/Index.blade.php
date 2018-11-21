@@ -28,7 +28,7 @@
 
 					<ul class="dropdown-menu">
 						@foreach($categorys as $key=>$value)
-							@if($v['id'] == $value['pid'])
+							@if($v['id'] == $value['pid'] && $value['status'] == 0)
 							<li><a href="/cate/{{ $value['id']}}">{{ $value['name'] }}</a></li>
 							@endif
 						@endforeach
@@ -54,7 +54,10 @@
 <div class="full-header">
 	<div class="overlay"></div>
 	<div class="search">
-		
+		<form action="search.html">
+			<!-- <input type="text" placeholder="..." class="principal-search"> -->
+			<!-- <button type="submit" class="principal-search-btn"><i class="fa fa-search" aria-hidden="true"></i></button> -->
+		</form>
 	</div>
 </div>
 

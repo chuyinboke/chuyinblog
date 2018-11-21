@@ -147,11 +147,10 @@ class CategoryController extends Controller
       
        
          $this->validate($request,[
-            'name' => 'required|unique:category|regex:/[^a-zA-Z0-9]/'
+            'name' => 'required|regex:/[^a-zA-Z0-9]/'
 
         ],[ 
             'name.required' => '内容不能为空',
-            'name.unique' => '已有此分类',
             'name.regex' => '格式不正确，请填写中文'
         ]);
           // 查询子类

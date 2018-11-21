@@ -9,7 +9,7 @@
 					<!-- Profile info -->
 					<div class="col-md-3 col-sm-5">
 						<div class="img-profile text-center">
-							<img src="/h/images/2.jpg" class="img-responsive" alt="John Doe">
+							<img src="{{ $all->userperson['pic']}}" class="img-responsive" alt="John Doe">
 							<div class="profile-name">
 								John Doe
 							</div>
@@ -63,7 +63,7 @@
 						<!-- photo list item -->
 						<div class="media photo-list">
 							<a href="/person/bloggercenter/{{ $v['id']}}">
-								<img src="/h/images/photos/1.jpg" class="img-responsive margin-bottom-20" alt="Last sale photo 1">
+								<img src="{{ $v->userperson['pic']}}" style="width:200px;height:150px" alt="Last sale photo 1">
 								<div class="media-body">
 								<div class="row">
 									<!-- Description column -->
