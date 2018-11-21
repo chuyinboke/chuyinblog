@@ -63,10 +63,12 @@ class LoginuserController extends Controller
         if(!$users){
 
                echo "<script>alert('用户不存在');location.href='/loginuser/create'</script>";
+               exit;
         }
         // 判断密码
         if(!Hash::check($pw, $users['password'])){
                echo "<script>alert('密码错误');location.href='/loginuser/create'</script>";
+               exit;
 
         }
         // 判断是否有权限''

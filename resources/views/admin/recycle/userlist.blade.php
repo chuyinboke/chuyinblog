@@ -58,7 +58,7 @@
                               @endforeach
                         </tbody>
                     </table>
-                    <div class="dataTables_info" id="DataTables_Table_1_info">Showing 1 to 10 of 57 entries
+                    <div class="dataTables_info" id="DataTables_Table_1_info">{{ date('Y年m月d日 H:i',time()) }}
                         
                     </div>
                       <div id='page_page'>

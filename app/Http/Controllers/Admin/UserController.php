@@ -97,9 +97,14 @@ class UserController extends Controller
      */
     public function edit( $id)
     {
-        $date =User::where('id','=',$id)->first();
 
+        $date =User::where('id','=',$id)->first();
+        if($date['status'] == 0){
+            return  back()->with('error','禁止修改其他管理员');
+        }else{
         return view('admin.user.edit',['title'=>'修改用户','date'=>$date]);
+
+        }
     }
 
     /**
@@ -125,6 +130,7 @@ class UserController extends Controller
        if($user){
         // 提交事务
             DB::commit();
+            session(['admin'=>$user['username']]);
             return redirect('admin/user')->with('success','修改成功');
        }else{
         // 回滚
