@@ -35,8 +35,8 @@
                     				<div class="mws-form-row">
                     				<label class="mws-form-label">评论内容</label>
                     				<div class="mws-form-item">
-                    					<input type="text" class="small" name="content" value="{!! $data['content'] !!}">
-                    				</div>
+                                        <input type="text" class="small" name="content" value="{{ $data['content'] }}">
+                                    </div>
                     				</div>
                     			</div>	
                     			<div class="mws-form-row">

@@ -54,10 +54,7 @@
 <div class="full-header">
 	<div class="overlay"></div>
 	<div class="search">
-		<form action="search.html">
-			<input type="text" placeholder="..." class="principal-search">
-			<button type="submit" class="principal-search-btn"><i class="fa fa-search" aria-hidden="true"></i></button>
-		</form>
+		
 	</div>
 </div>
 

@@ -51,7 +51,7 @@
       				<td>{{$v['content']}}</td>
       				<td>{{$v['created_at']}}</td>
       				<td>
-	  					<!-- <a href="/admin/Leaving/{{$v['id']}}/edit" class="btn btn-warning">回复</a> -->
+	  					<a href="/admin/Leaving/{{$v['id']}}/edit" class="btn btn-warning">回复</a>
 	                	<form action="/admin/Leaving/{{$v['id']}}" method="post" style="display:inline-block"> 
 	                        {{ csrf_field() }}
 	                        {{ method_field('DELETE') }}

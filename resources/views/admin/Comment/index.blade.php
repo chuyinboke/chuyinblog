@@ -56,7 +56,7 @@
              		<td>{!!$v['content']!!}</td>
              		<td>{{$v['created_at']}}</td>
              		<td>
-             			<a href="/admin/comment/{{$v['id']}}/edit" class="btn btn-warning">加精置顶</a>
+             			<a href="/admin/comment/{{$v['id']}}/edit" class="btn btn-warning">加精</a>
              			<form action="/admin/comment/{{ $v['id'] }}" method="post" style="display:inline-block"> 
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
