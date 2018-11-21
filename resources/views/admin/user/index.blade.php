@@ -53,7 +53,7 @@
                               
                                 <td> 
                                      <a href="/admin/user/{{ $v['id']}}/edit" class='btn btn-warning'>修改</a>                 
-                                    <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除sss</button>
+                                    <button class='btn btn-danger' onclick="del(this,'{{$v['id']}}')"  id ='{{ $v["id"]}}'>删除</button>
                                 </td>
                             </tr>
                               @endforeach

@@ -18,7 +18,7 @@ class LeavingController extends Controller
     {
         //加载视图
         $leaving = Leaving::all();
-        return view('Home.Leaving.index',['title'=>'留言板']);
+        return view('Home.Leaving.indexs',['title'=>'留言板列表','leaving'=>$leaving]);
     }
 
     /**
@@ -28,8 +28,7 @@ class LeavingController extends Controller
      */
     public function create()
     {
-        
-
+       return view('Home.Leaving.index',['title'=>'留言板']); 
     }
 
     /**

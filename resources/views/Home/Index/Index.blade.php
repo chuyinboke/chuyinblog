@@ -37,7 +37,13 @@
 				</li>
 				@endforeach
 				<li><a href="/Blogger">关于博主</a></li>
-				<li><a href="/Leaving">留言板</a></li>
+				<li>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">留言板</a>
+					<ul class="dropdown-menu">
+						<li><a href="/Leaving/create">留言板</a></li>
+						<li><a href="/Leaving">留言列表</a></li>
+					</ul>
+				</li>
 			</ul>
 			
 			
