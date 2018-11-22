@@ -51,7 +51,7 @@ class ConfigController extends Controller
             //拼接路径
             $profile_path = ltrim($dir_name.'/'.$file_name,'.');
         }else{
-            dd('请选择文件');
+            $profile_path = '/h/images/2.jpg';
         }
         // $config =DB::table('config')->find(1);
         $config = Config::find(1);

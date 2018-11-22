@@ -193,7 +193,7 @@
 			<!-- 文章图片显示 -->
 			<div class="media-left">
 				<a href="#">
-					<img class="media-object photo-list-image" alt="List photo" src="{{$v['image']}}">
+					<img class="media-object photo-list-image" style="width:200px;height:150px;" alt="List photo" src="{{$v['image']}}">
 				</a>
 			</div>
 			<!-- 文章内容区 -->

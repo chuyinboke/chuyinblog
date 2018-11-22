@@ -106,8 +106,7 @@ class PublishController extends Controller
             $res = $profile-> move($dir_name,$file_name);
             //拼接路径
             $profile_path = ltrim($dir_name.'/'.$file_name,'.');
-        }
-        // 
+        }     
         $article = new Article;
         $article->tid =$tid[0]['id'];
         $article->title =$request->input('title');
